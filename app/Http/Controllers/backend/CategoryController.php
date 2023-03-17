@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\backend;
 
 use App\Http\Controllers\Controller;
+use App\Models\Category;
 use Illuminate\Http\Request;
 
 class CategoryController extends Controller
@@ -12,15 +13,8 @@ class CategoryController extends Controller
      */
     public function index()
     {
-        //
-    }
-
-    /**
-     * Show the form for creating a new resource.
-     */
-    public function create()
-    {
-        //
+        $categories = Category::latest()->get();
+        return view('backend.category.addCategory', compact('categories'));
     }
 
     /**
@@ -28,38 +22,65 @@ class CategoryController extends Controller
      */
     public function store(Request $request)
     {
-        //
-    }
+        $request->validate([
+            'title' => 'required|string',
+        ],);
 
-    /**
-     * Display the specified resource.
-     */
-    public function show(string $id)
-    {
-        //
+
+        $category = Category::create([
+            'title' => $request->title,
+            'slug' => $this->slugGenerator($request->title, $request->slug)
+        ]);
+        return back()->with('success', 'new category added');
     }
 
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(string $id)
+    public function edit(Category $category)
     {
-        //
+        $editedCategory = $category;
+        $categories  = Category::latest()->get();
+        return view('backend.category.addCategory', compact('categories', 'editedCategory'));
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(Request $request, Category $category)
     {
-        //
+        $request->validate(
+            ["title" => "required"]
+        );
+        $category->title = $request->title;
+        $category->slug = $this->slugGenerator($request->title, $request->slug);
+        $category->update();
+        return redirect()->route('category.index')->with('success', 'category updated');
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(string $id)
+    public function destroy(Category $category)
     {
-        //
+        $category->delete();
+        return back()->with('success', 'category deleted');
+    }
+
+
+    private function slugGenerator($title, $slug = null)
+    {
+
+        if ($slug == null) {
+            $newSlug  = str()->slug($title);
+        } else {
+            $newSlug = str()->slug($slug);
+        }
+        $count  = Category::where('slug', 'LIKE', '%' . $newSlug . '%')->count();
+        if ($count > 0) {
+            $newSlug = $newSlug . '-' . $count++;
+        }
+
+        return $newSlug;
     }
 }

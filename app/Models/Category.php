@@ -13,4 +13,14 @@ class Category extends Model
     {
         return $this->hasMany(SubCategory::class);
     }
+
+    /**
+     * The attributes that are mass assignable.
+     *
+     * @var array<int, string>
+     */
+    protected $fillable = [
+        'title',
+        'slug'
+    ];
 }
