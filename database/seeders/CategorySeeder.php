@@ -12,9 +12,14 @@ class CategorySeeder extends Seeder
      */
     public function run(): void
     {
-        Category::create([
-            'title' => "Category",
-            'slug' => 'cetegory',
-        ]);
+        $categories = [
+            "Health", "Technology", "Personal Finance", "Finance", "Lifestyle"
+        ];
+        foreach ($categories as $value) {
+            Category::create([
+                'title' => $value,
+                'slug' => str()->slug($value),
+            ]);
+        }
     }
 }
