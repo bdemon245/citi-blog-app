@@ -18,6 +18,7 @@ return new class extends Migration
             $table->foreignId('sub_category_id')->constrained()->onUpdate('cascade')->onDelete('cascade');
             $table->string('title');
             $table->string('slug')->unique();
+            $table->integer('view_count')->default(0);
             $table->string('type')->nullable();
             $table->string('featured_img')->default('https://cdn.dribbble.com/users/844846/screenshots/6593834/icon-animation-1_still_2x.gif');
             $table->longText('content')->nullable();

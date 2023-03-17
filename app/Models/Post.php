@@ -30,6 +30,7 @@ class Post extends Model
         'category_id',
         'sub_category_id',
         'slug',
+        'view_count',
         'content',
         'type',
         'featured_image',
