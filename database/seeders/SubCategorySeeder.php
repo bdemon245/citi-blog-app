@@ -4,10 +4,12 @@ namespace Database\Seeders;
 
 use App\Models\Category;
 use App\Models\SubCategory;
+use App\Traits\MakeSlug;
 use Illuminate\Database\Seeder;
 
 class SubCategorySeeder extends Seeder
 {
+    use MakeSlug;
     /**
      * Run the database seeds.
      */
@@ -48,7 +50,7 @@ class SubCategorySeeder extends Seeder
                 SubCategory::updateOrCreate(['title' => $value], [
                     "category_id" => $key,
                     "title" => $value,
-                    "slug" => str()->slug($value),
+                    "slug" => $this->makeSlug("sub_categories", $value),
                 ]);
             }
         }

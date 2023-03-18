@@ -4,10 +4,14 @@ namespace App\Http\Controllers\backend;
 
 use App\Http\Controllers\Controller;
 use App\Models\Category;
+use Illuminate\Database\Eloquent\Builder;
+use App\Traits\MakeSlug;
 use Illuminate\Http\Request;
+
 
 class CategoryController extends Controller
 {
+    use MakeSlug;
     /**
      * Display a listing of the resource.
      */
@@ -29,7 +33,7 @@ class CategoryController extends Controller
 
         $category = Category::create([
             'title' => $request->title,
-            'slug' => $this->slugGenerator($request->title, $request->slug)
+            'slug' => $this->makeSlug('categories', $request->title),
         ]);
         return back()->with('success', 'new category added');
     }
@@ -68,19 +72,19 @@ class CategoryController extends Controller
     }
 
 
-    private function slugGenerator($title, $slug = null)
-    {
+    // private function slugGenerator($title, $slug = null)
+    // {
 
-        if ($slug == null) {
-            $newSlug  = str()->slug($title);
-        } else {
-            $newSlug = str()->slug($slug);
-        }
-        $count  = Category::where('slug', 'LIKE', '%' . $newSlug . '%')->count();
-        if ($count > 0) {
-            $newSlug = $newSlug . '-' . $count++;
-        }
+    //     if ($slug == null) {
+    //         $newSlug  = str()->slug($title);
+    //     } else {
+    //         $newSlug = str()->slug($slug);
+    //     }
+    //     $count  = Category::where('slug', 'LIKE', '%' . $newSlug . '%')->count();
+    //     if ($count > 0) {
+    //         $newSlug = $newSlug . '-' . $count++;
+    //     }
 
-        return $newSlug;
-    }
+    //     return $newSlug;
+    // }
 }

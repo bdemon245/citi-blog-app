@@ -3,10 +3,12 @@
 namespace Database\Seeders;
 
 use App\Models\Category;
+use App\Traits\MakeSlug;
 use Illuminate\Database\Seeder;
 
 class CategorySeeder extends Seeder
 {
+    use MakeSlug;
     /**
      * Run the database seeds.
      */
@@ -18,7 +20,7 @@ class CategorySeeder extends Seeder
         foreach ($categories as $value) {
             Category::create([
                 'title' => $value,
-                'slug' => str()->slug($value),
+                'slug' => $this->makeSlug('categories', $value),
             ]);
         }
     }
