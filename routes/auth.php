@@ -35,10 +35,10 @@ Route::middleware('guest')->group(function () {
     Route::post('reset-password', [NewPasswordController::class, 'store'])
         ->name('password.store');
 
-    //routes for socail login redirect
+    //routes for social login redirect
     Route::get('login/social/{provider}', [SocialLoginController::class, 'redirectToProvider'])->name('login.social');
 
-    //routes for socail login callback handle
+    //routes for social login callback handle
     Route::get('auth/callback/{provider}', [SocialLoginController::class, 'handleCallback']);
 
     #->where('provider', '[A-Za-z]+]')

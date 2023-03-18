@@ -2,8 +2,9 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Factories\HasFactory;
+use App\Models\SubCategory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class Post extends Model
 {
@@ -18,9 +19,9 @@ class Post extends Model
     {
         return $this->belongsTo(Category::class);
     }
-    public function subcategory()
+    public function subCategory()
     {
-        return $this->belongsTo(Subcategory::class);
+        return $this->belongsTo(SubCategory::class);
     }
 
 
@@ -31,6 +32,7 @@ class Post extends Model
         'sub_category_id',
         'slug',
         'view_count',
+        'title',
         'content',
         'type',
         'featured_image',

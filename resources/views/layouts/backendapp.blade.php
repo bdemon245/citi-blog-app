@@ -179,7 +179,8 @@ License: You must have a valid license purchased only from themeforest(the above
                                 </div>
                                 <div class="ms-2 overflow-hidden">
                                     <div class="d-flex align-items-center">
-                                        <a href="javascript:;" class="fw-medium truncate me-5 dark-text-gray-300">Robert
+                                        <a href="javascript:;"
+                                            class="fw-medium truncate me-5 dark-text-gray-300">Robert
                                             De Niro</a>
                                         <div class="fs-xs text-gray-500 ms-auto text-nowrap">01:10 PM</div>
                                     </div>
@@ -202,7 +203,8 @@ License: You must have a valid license purchased only from themeforest(the above
                                             class="fw-medium truncate me-5 dark-text-gray-300">Angelina Jolie</a>
                                         <div class="fs-xs text-gray-500 ms-auto text-nowrap">06:05 AM</div>
                                     </div>
-                                    <div class="w-full truncate text-gray-600 mt-0.5">It is a long established fact that
+                                    <div class="w-full truncate text-gray-600 mt-0.5">It is a long established fact
+                                        that
                                         a reader will be distracted by the readable content of a page when looking at
                                         its layout. The point of using Lorem </div>
                                 </div>
@@ -217,11 +219,13 @@ License: You must have a valid license purchased only from themeforest(the above
                                 </div>
                                 <div class="ms-2 overflow-hidden">
                                     <div class="d-flex align-items-center">
-                                        <a href="javascript:;" class="fw-medium truncate me-5 dark-text-gray-300">Robert
+                                        <a href="javascript:;"
+                                            class="fw-medium truncate me-5 dark-text-gray-300">Robert
                                             De Niro</a>
                                         <div class="fs-xs text-gray-500 ms-auto text-nowrap">05:09 AM</div>
                                     </div>
-                                    <div class="w-full truncate text-gray-600 mt-0.5">It is a long established fact that
+                                    <div class="w-full truncate text-gray-600 mt-0.5">It is a long established fact
+                                        that
                                         a reader will be distracted by the readable content of a page when looking at
                                         its layout. The point of using Lorem </div>
                                 </div>
@@ -236,7 +240,8 @@ License: You must have a valid license purchased only from themeforest(the above
                                 </div>
                                 <div class="ms-2 overflow-hidden">
                                     <div class="d-flex align-items-center">
-                                        <a href="javascript:;" class="fw-medium truncate me-5 dark-text-gray-300">Bruce
+                                        <a href="javascript:;"
+                                            class="fw-medium truncate me-5 dark-text-gray-300">Bruce
                                             Willis</a>
                                         <div class="fs-xs text-gray-500 ms-auto text-nowrap">03:20 PM</div>
                                     </div>
@@ -255,11 +260,13 @@ License: You must have a valid license purchased only from themeforest(the above
                                 </div>
                                 <div class="ms-2 overflow-hidden">
                                     <div class="d-flex align-items-center">
-                                        <a href="javascript:;" class="fw-medium truncate me-5 dark-text-gray-300">Kevin
+                                        <a href="javascript:;"
+                                            class="fw-medium truncate me-5 dark-text-gray-300">Kevin
                                             Spacey</a>
                                         <div class="fs-xs text-gray-500 ms-auto text-nowrap">01:10 PM</div>
                                     </div>
-                                    <div class="w-full truncate text-gray-600 mt-0.5">It is a long established fact that
+                                    <div class="w-full truncate text-gray-600 mt-0.5">It is a long established fact
+                                        that
                                         a reader will be distracted by the readable content of a page when looking at
                                         its layout. The point of using Lorem </div>
                                 </div>
@@ -335,10 +342,13 @@ License: You must have a valid license purchased only from themeforest(the above
     </div>
 
 
-    <script src="https://code.jquery.com/jquery-3.6.3.min.js"
-        integrity="sha256-pvPw+upLPUjgMXY0G+8O0xUf+/Im1MZjXxxgOcBQBXU=" crossorigin="anonymous"></script>
-    <script src="{{ asset('backend/dist/js/app.js') }}"></script>
-    <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.4/jquery.min.js"
+        integrity="sha512-pumBsjNRGGqkPzKHndZMaAG+bir374sORyzM3uulLV14lN5LyykqNk8eEeUlUkB3U0M4FApyaHraT65ihJhDpQ=="
+        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script src="{{ asset('backend/dist/js/app.js') }}">
+        < /> <
+        script src = "//cdn.jsdelivr.net/npm/sweetalert2@11" >
+    </script>
 
     @stack('customJs')
 
