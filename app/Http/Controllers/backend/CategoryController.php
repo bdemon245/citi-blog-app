@@ -57,7 +57,7 @@ class CategoryController extends Controller
             ["title" => "required"]
         );
         $category->title = $request->title;
-        $category->slug = $this->slugGenerator($request->title, $request->slug);
+        $category->slug = $this->makeSlug('categories', $request->title);
         $category->update();
         return redirect()->route('category.index')->with('success', 'category updated');
     }

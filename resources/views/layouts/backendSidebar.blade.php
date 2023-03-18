@@ -44,13 +44,13 @@
         <ul
             class="{{ request()->routeIs('category.*') | request()->routeIs('subCategory.*') ? 'side-menu__sub-open' : '' }}">
             <li>
-                <a href="/admin/category" class="side-menu side-menu--active side-menu--open">
+                <a href="{{ route('category.index') }}" class="side-menu side-menu--active side-menu--open">
                     <div class="side-menu__icon"> <i data-feather="activity"></i> </div>
                     <div class="side-menu__title"> Category Manegment </div>
                 </a>
             </li>
             <li>
-                <a href="/admin/category" class="side-menu side-menu--active side-menu--open">
+                <a href="{{ route('subCategory.index') }}" class="side-menu side-menu--active side-menu--open">
                     <div class="side-menu__icon"> <i data-feather="activity"></i> </div>
                     <div class="side-menu__title"> Sub-Category Manegment </div>
                 </a>

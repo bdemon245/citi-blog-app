@@ -9,6 +9,10 @@ class SubCategory extends Model
 {
     use HasFactory;
 
+    public function category()
+    {
+        return $this->belongsTo(Category::class);
+    }
     /**
      * The attributes that are mass assignable.
      *

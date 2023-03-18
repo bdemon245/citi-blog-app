@@ -9,14 +9,9 @@
                         <form action="{{ route('category.update', $editedCategory) }}" method="POST">
                             @csrf
                             @method('PUT')
-                            <input type="text" name="title" class="form-control mt-3 " placeholder="Category Title"
+                            <input type="text" name="title" class="form-control mb-3 " placeholder="Category Title"
                                 value="{{ $editedCategory->title }}">
                             @error('title')
-                                <span style="color: red">{{ $message }}</span>
-                            @enderror
-                            <input type="text" name="slug" class="form-control mt-3 mb-3" placeholder="Category Slug"
-                                value="">
-                            @error('slug')
                                 <span style="color: red">{{ $message }}</span>
                             @enderror
                             <button class="btn btn-primary">Update Category</button>
@@ -29,12 +24,8 @@
                     <div class="card-body">
                         <form action="/admin/category" method="POST">
                             @csrf
-                            <input type="text" name="title" class="form-control mt-3 " placeholder="Category Title">
+                            <input type="text" name="title" class="form-control mb-3 " placeholder="Category Title">
                             @error('title')
-                                <span style="color: red">{{ $message }}</span>
-                            @enderror
-                            <input type="text" name="slug" class="form-control mt-3 mb-3" placeholder="Category Slug">
-                            @error('slug')
                                 <span style="color: red">{{ $message }}</span>
                             @enderror
                             <button class="btn btn-primary">Add Category</button>
