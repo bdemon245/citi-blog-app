@@ -21,13 +21,24 @@ class StorePostRequest extends FormRequest
      */
     public function rules(): array
     {
-        return [
-            'title' => "required",
-            'category_id' => "required",
-            'sub_category_id' => "required",
-            'type' => "required",
-            'featured_img' => "required|image|max:2048",
-            'content' => "required",
-        ];
+        if ($this->method == 'post') {
+            return [
+                'title' => "required",
+                'category_id' => "required",
+                'sub_category_id' => "required",
+                'type' => "required",
+                'featured_img' => "required|image|max:2048",
+                'content' => "required",
+            ];
+        } else {
+            return [
+                'title' => "bail",
+                'category_id' => "bail",
+                'sub_category_id' => "bail",
+                'type' => "bail",
+                'featured_img' => "bail|image|max:2048",
+                'content' => "bail",
+            ];
+        }
     }
 }

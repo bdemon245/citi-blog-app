@@ -35,7 +35,7 @@ class Post extends Model
         'title',
         'content',
         'type',
-        'featured_image',
+        'featured_img',
         'is_banner',
     ];
 }

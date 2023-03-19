@@ -2,8 +2,8 @@
 @php
     function getImage(string $imgUrl)
     {
-        if (Str::contains($imgUrl, 'storage/uploads')) {
-            $imgUrl = asset('storage/uploads/posts' . $imgUrl);
+        if (Str::contains($imgUrl, 'uploads/')) {
+            $imgUrl = asset('storage/' . $imgUrl);
         }
         return $imgUrl;
     }
@@ -29,7 +29,8 @@
             <tr>
                 <td>{{ ++$key }}</td>
                 <td><img src="{{ getImage($post->featured_img) }}" alt="{{ $post->title }}"
-                        style="max-height: 120px;border-radius: 10px;"></td>
+                        style="max-height: 120px;border-radius: 10px;">
+                </td>
                 <td>{{ $post->title }}</td>
                 <td>
                     <div class="d-flex gap-2">

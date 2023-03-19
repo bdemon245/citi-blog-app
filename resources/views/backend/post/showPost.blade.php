@@ -2,8 +2,8 @@
 @php
     function getImage(string $imgUrl)
     {
-        if (Str::contains($imgUrl, 'storage/uploads')) {
-            $imgUrl = asset('storage/uploads/posts' . $imgUrl);
+        if (Str::contains($imgUrl, 'uploads/')) {
+            $imgUrl = asset('storage/' . $imgUrl);
         }
         return $imgUrl;
     }
@@ -22,7 +22,7 @@
             <span>Sub Category : {{ $post->subCategory->title }}</span><span class="mx-3 text-theme-28">|</span>
             <span>Views : {{ $post->view_count }}</span>
             <div class="card-body">
-                {{ $post->content }}
+                {!! $post->content !!}
             </div>
             <div class="mt-3">
                 <img src="{{ getImage($post->featured_img) }}" alt="{{ $post->slug }}">
