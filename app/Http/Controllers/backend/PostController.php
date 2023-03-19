@@ -115,4 +115,19 @@ class PostController extends Controller
         $post->delete();
         return back()->with('success', 'post deleted');
     }
+    /**
+     * Toggles banner status
+     */
+    public function toggleBanner(Post $post)
+    {
+        if ($post->is_banner === 0) {
+            $post->is_banner = 1;
+            $msg = 'banner activated';
+        } else {
+            $post->is_banner = 0;
+            $msg = 'banner deactivated';
+        }
+        $post->update();
+        return back()->with('success', 'banner activated');
+    }
 }

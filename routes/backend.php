@@ -33,6 +33,7 @@ Route::group(['prefix' => "admin"], function () {
         'update' => 'post.update',
         'destroy' => 'post.destroy',
     ]);
+    Route::patch('post/{post}/toggle-banner', [PostController::class, 'toggleBanner'])->name('post.toggleBanner');
     Route::resource('role', RoleController::class)->names([
         'index' => 'role.index',
         'create' => 'role.create',
