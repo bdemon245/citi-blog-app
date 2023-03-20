@@ -13,7 +13,9 @@ class HomeController extends Controller
     {
         $categories  = Category::with('subcategories')->latest()->get();
         $banners = Post::with('category', 'subCategory', 'user')->where('is_banner', '>', "0")->latest()->get();
-        return view('frontend.home', compact('categories', 'banners'));
+        $posts = Post::with('category', 'subCategory', 'user')->latest()->paginate(5);
+
+        return view('frontend.home', compact('categories', 'banners', 'posts'));
     }
 
     public function showCategoryPost($id)

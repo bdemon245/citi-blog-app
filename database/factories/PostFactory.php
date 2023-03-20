@@ -2,6 +2,7 @@
 
 namespace Database\Factories;
 
+use App\Traits\MakeSlug;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
@@ -9,6 +10,7 @@ use Illuminate\Database\Eloquent\Factories\Factory;
  */
 class PostFactory extends Factory
 {
+    use MakeSlug;
     /**
      * Define the model's default state.
      *
@@ -32,7 +34,7 @@ class PostFactory extends Factory
 
         return [
             "title" => $title,
-            "slug" => str()->slug($title),
+            "slug" => $this->makeSlug("posts", $title),
             "content" => fake()->realText(500),
             "user_id" => fake()->randomElement([1, 2, 3, 4, 5, 6]),
             "category_id" => $categoryId,

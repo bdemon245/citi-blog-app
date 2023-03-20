@@ -46,228 +46,66 @@
                 <div class="col-lg-8">
 
                     <!-- post -->
-                    <div class="post post-classic rounded bordered">
-                        <div class="thumb top-rounded">
-                            <a href="category.html" class="category-badge lg position-absolute">Lifestyle</a>
-                            <span class="post-format">
-                                <i class="icon-picture"></i>
-                            </span>
-                            <a href="blog-single.html">
-                                <div class="inner">
-                                    <img src="images/posts/post-lg-1.jpg" alt="post-title" />
-                                </div>
-                            </a>
-                        </div>
-                        <div class="details">
-                            <ul class="meta list-inline mb-0">
-                                <li class="list-inline-item"><a href="classic.html#"><img src="images/other/author-sm.png"
-                                            class="author" alt="author" />Katen
-                                        Doe</a></li>
-                                <li class="list-inline-item">29 March 2021</li>
-                                <li class="list-inline-item"><i class="icon-bubble"></i> (0)</li>
-                            </ul>
-                            <h5 class="post-title mb-3 mt-3"><a href="blog-single.html">How To Become Better With
-                                    Building In 1 Month</a></h5>
-                            <p class="excerpt mb-0">Far far away, behind the word mountains, far from the countries
-                                Vokalia and Consonantia, there live the blind texts. Separated they live in
-                                Bookmarksgrove right at the coast of the Semantics, a large language ocean.</p>
-                        </div>
-                        <div class="post-bottom clearfix d-flex align-items-center">
-                            <div class="social-share me-auto">
-                                <button class="toggle-button icon-share"></button>
-                                <ul class="icons list-unstyled list-inline mb-0">
-                                    <li class="list-inline-item"><a href="classic.html#"><i
-                                                class="fab fa-facebook-f"></i></a></li>
-                                    <li class="list-inline-item"><a href="classic.html#"><i class="fab fa-twitter"></i></a>
-                                    </li>
-                                    <li class="list-inline-item"><a href="classic.html#"><i
-                                                class="fab fa-linkedin-in"></i></a></li>
-                                    <li class="list-inline-item"><a href="classic.html#"><i
-                                                class="fab fa-pinterest"></i></a></li>
-                                    <li class="list-inline-item"><a href="classic.html#"><i
-                                                class="fab fa-telegram-plane"></i></a></li>
-                                    <li class="list-inline-item"><a href="classic.html#"><i class="far fa-envelope"></i></a>
-                                    </li>
+                    @foreach ($posts as $post)
+                        <div class="post post-classic rounded bordered">
+                            <div class="thumb top-rounded">
+                                <a href="category.html"
+                                    class="category-badge lg position-absolute">{{ $post->category->title }}</a>
+                                <span class="post-format">
+                                    <i class="icon-picture"></i>
+                                </span>
+                                <a href="blog-single.html">
+                                    <div class="inner">
+                                        <img src="{{ getImage($post->featured_img) }}" alt="post-title" />
+                                    </div>
+                                </a>
+                            </div>
+                            <div class="details">
+                                <ul class="meta list-inline mb-0">
+                                    <li class="list-inline-item"><a href="classic.html#"><img
+                                                src="{{ getImage($post->user->avatar) }}" class="author avatar"
+                                                alt="author" />{{ $post->user->name }}</a></li>
+                                    <li class="list-inline-item">
+                                        {{ Carbon\Carbon::parse($post->created_at)->format('d M Y') }}</li>
+                                    <li class="list-inline-item"><i class="icon-bubble"></i> (0)</li>
                                 </ul>
+                                <h5 class="post-title mb-3 mt-3"><a href="blog-single.html">{{ $post->title }}</a></h5>
+                                <p class="excerpt mb-0">{!! Str::limit($post->content, 200, '...') !!}</p>
                             </div>
-                            <div class="float-end d-none d-md-block">
-                                <a href="blog-single.html" class="more-link">Continue reading<i
-                                        class="icon-arrow-right"></i></a>
-                            </div>
-                            <div class="more-button d-block d-md-none float-end">
-                                <a href="blog-single.html"><span class="icon-options"></span></a>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- post -->
-                    <div class="post post-classic rounded bordered">
-                        <div class="thumb top-rounded">
-                            <a href="category.html" class="category-badge lg position-absolute">Inspiration</a>
-                            <a href="blog-single.html">
-                                <div class="inner">
-                                    <img src="images/posts/post-lg-2.jpg" alt="post-title" />
+                            <div class="post-bottom clearfix d-flex align-items-center">
+                                <div class="social-share me-auto">
+                                    <button class="toggle-button icon-share"></button>
+                                    <ul class="icons list-unstyled list-inline mb-0">
+                                        <li class="list-inline-item"><a href="classic.html#"><i
+                                                    class="fab fa-facebook-f"></i></a></li>
+                                        <li class="list-inline-item"><a href="classic.html#"><i
+                                                    class="fab fa-twitter"></i></a>
+                                        </li>
+                                        <li class="list-inline-item"><a href="classic.html#"><i
+                                                    class="fab fa-linkedin-in"></i></a></li>
+                                        <li class="list-inline-item"><a href="classic.html#"><i
+                                                    class="fab fa-pinterest"></i></a></li>
+                                        <li class="list-inline-item"><a href="classic.html#"><i
+                                                    class="fab fa-telegram-plane"></i></a></li>
+                                        <li class="list-inline-item"><a href="classic.html#"><i
+                                                    class="far fa-envelope"></i></a>
+                                        </li>
+                                    </ul>
                                 </div>
-                            </a>
-                        </div>
-                        <div class="details">
-                            <ul class="meta list-inline mb-0">
-                                <li class="list-inline-item"><a href="classic.html#"><img src="images/other/author-sm.png"
-                                            class="author" alt="author" />Katen
-                                        Doe</a></li>
-                                <li class="list-inline-item">29 March 2021</li>
-                                <li class="list-inline-item"><i class="icon-bubble"></i> (0)</li>
-                            </ul>
-                            <h5 class="post-title mb-3 mt-3"><a href="blog-single.html">10 Ways To Immediately Start
-                                    Selling Furniture</a></h5>
-                            <p class="excerpt mb-0">Far far away, behind the word mountains, far from the countries
-                                Vokalia and Consonantia, there live the blind texts. Separated they live in
-                                Bookmarksgrove right at the coast of the Semantics, a large language ocean.</p>
-                        </div>
-                        <div class="post-bottom clearfix d-flex align-items-center">
-                            <div class="social-share me-auto">
-                                <button class="toggle-button icon-share"></button>
-                                <ul class="icons list-unstyled list-inline mb-0">
-                                    <li class="list-inline-item"><a href="classic.html#"><i
-                                                class="fab fa-facebook-f"></i></a></li>
-                                    <li class="list-inline-item"><a href="classic.html#"><i
-                                                class="fab fa-twitter"></i></a></li>
-                                    <li class="list-inline-item"><a href="classic.html#"><i
-                                                class="fab fa-linkedin-in"></i></a></li>
-                                    <li class="list-inline-item"><a href="classic.html#"><i
-                                                class="fab fa-pinterest"></i></a></li>
-                                    <li class="list-inline-item"><a href="classic.html#"><i
-                                                class="fab fa-telegram-plane"></i></a></li>
-                                    <li class="list-inline-item"><a href="classic.html#"><i
-                                                class="far fa-envelope"></i></a></li>
-                                </ul>
-                            </div>
-                            <div class="float-end d-none d-md-block">
-                                <a href="blog-single.html" class="more-link">Continue reading<i
-                                        class="icon-arrow-right"></i></a>
-                            </div>
-                            <div class="more-button d-block d-md-none float-end">
-                                <a href="blog-single.html"><span class="icon-options"></span></a>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- post -->
-                    <div class="post post-classic rounded bordered">
-                        <div class="thumb top-rounded">
-                            <a href="category.html" class="category-badge lg position-absolute">Culture</a>
-                            <span class="post-format">
-                                <i class="icon-camrecorder"></i>
-                            </span>
-                            <a href="blog-single.html">
-                                <div class="inner">
-                                    <img src="images/posts/post-lg-3.jpg" alt="post-title" />
+                                <div class="float-end d-none d-md-block">
+                                    <a href="blog-single.html" class="more-link">Continue reading<i
+                                            class="icon-arrow-right"></i></a>
                                 </div>
-                            </a>
-                        </div>
-                        <div class="details">
-                            <ul class="meta list-inline mb-0">
-                                <li class="list-inline-item"><a href="classic.html#"><img
-                                            src="images/other/author-sm.png" class="author" alt="author" />Katen
-                                        Doe</a></li>
-                                <li class="list-inline-item">29 March 2021</li>
-                                <li class="list-inline-item"><i class="icon-bubble"></i> (0)</li>
-                            </ul>
-                            <h5 class="post-title mb-3 mt-3"><a href="blog-single.html">Most Important Thing You
-                                    Need To Know About Swim</a></h5>
-                            <p class="excerpt mb-0">Far far away, behind the word mountains, far from the countries
-                                Vokalia and Consonantia, there live the blind texts. Separated they live in
-                                Bookmarksgrove right at the coast of the Semantics, a large language ocean.</p>
-                        </div>
-                        <div class="post-bottom clearfix d-flex align-items-center">
-                            <div class="social-share me-auto">
-                                <button class="toggle-button icon-share"></button>
-                                <ul class="icons list-unstyled list-inline mb-0">
-                                    <li class="list-inline-item"><a href="classic.html#"><i
-                                                class="fab fa-facebook-f"></i></a></li>
-                                    <li class="list-inline-item"><a href="classic.html#"><i
-                                                class="fab fa-twitter"></i></a></li>
-                                    <li class="list-inline-item"><a href="classic.html#"><i
-                                                class="fab fa-linkedin-in"></i></a></li>
-                                    <li class="list-inline-item"><a href="classic.html#"><i
-                                                class="fab fa-pinterest"></i></a></li>
-                                    <li class="list-inline-item"><a href="classic.html#"><i
-                                                class="fab fa-telegram-plane"></i></a></li>
-                                    <li class="list-inline-item"><a href="classic.html#"><i
-                                                class="far fa-envelope"></i></a></li>
-                                </ul>
-                            </div>
-                            <div class="float-end d-none d-md-block">
-                                <a href="blog-single.html" class="more-link">Continue reading<i
-                                        class="icon-arrow-right"></i></a>
-                            </div>
-                            <div class="more-button d-block d-md-none float-end">
-                                <a href="blog-single.html"><span class="icon-options"></span></a>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- post -->
-                    <div class="post post-classic rounded bordered">
-                        <div class="thumb top-rounded">
-                            <a href="category.html" class="category-badge lg position-absolute">Lifestyle</a>
-                            <a href="blog-single.html">
-                                <div class="inner">
-                                    <img src="images/posts/post-lg-4.jpg" alt="post-title" />
+                                <div class="more-button d-block d-md-none float-end">
+                                    <a href=""><span class="icon-options"></span></a>
                                 </div>
-                            </a>
-                        </div>
-                        <div class="details">
-                            <ul class="meta list-inline mb-0">
-                                <li class="list-inline-item"><a href="classic.html#"><img
-                                            src="images/other/author-sm.png" class="author" alt="author" />Katen
-                                        Doe</a></li>
-                                <li class="list-inline-item">29 March 2021</li>
-                                <li class="list-inline-item"><i class="icon-bubble"></i> (0)</li>
-                            </ul>
-                            <h5 class="post-title mb-3 mt-3"><a href="blog-single.html">Your Light Is About To Stop
-                                    Being Relevant</a></h5>
-                            <p class="excerpt mb-0">Far far away, behind the word mountains, far from the countries
-                                Vokalia and Consonantia, there live the blind texts. Separated they live in
-                                Bookmarksgrove right at the coast of the Semantics, a large language ocean.</p>
-                        </div>
-                        <div class="post-bottom clearfix d-flex align-items-center">
-                            <div class="social-share me-auto">
-                                <button class="toggle-button icon-share"></button>
-                                <ul class="icons list-unstyled list-inline mb-0">
-                                    <li class="list-inline-item"><a href="classic.html#"><i
-                                                class="fab fa-facebook-f"></i></a></li>
-                                    <li class="list-inline-item"><a href="classic.html#"><i
-                                                class="fab fa-twitter"></i></a></li>
-                                    <li class="list-inline-item"><a href="classic.html#"><i
-                                                class="fab fa-linkedin-in"></i></a></li>
-                                    <li class="list-inline-item"><a href="classic.html#"><i
-                                                class="fab fa-pinterest"></i></a></li>
-                                    <li class="list-inline-item"><a href="classic.html#"><i
-                                                class="fab fa-telegram-plane"></i></a></li>
-                                    <li class="list-inline-item"><a href="classic.html#"><i
-                                                class="far fa-envelope"></i></a></li>
-                                </ul>
-                            </div>
-                            <div class="float-end d-none d-md-block">
-                                <a href="blog-single.html" class="more-link">Continue reading<i
-                                        class="icon-arrow-right"></i></a>
-                            </div>
-                            <div class="more-button d-block d-md-none float-end">
-                                <a href="blog-single.html"><span class="icon-options"></span></a>
                             </div>
                         </div>
-                    </div>
+                    @endforeach
 
-                    <nav>
-                        <ul class="pagination justify-content-center">
-                            <li class="page-item active" aria-current="page">
-                                <span class="page-link">1</span>
-                            </li>
-                            <li class="page-item"><a class="page-link" href="classic.html#">2</a></li>
-                            <li class="page-item"><a class="page-link" href="classic.html#">3</a></li>
-                        </ul>
-                    </nav>
+
+                    {{ $posts->links() }}
+                   
 
                 </div>
                 <div class="col-lg-4">
@@ -284,14 +122,14 @@
                                 <ul class="social-icons list-unstyled list-inline mb-0">
                                     <li class="list-inline-item"><a href="classic.html#"><i
                                                 class="fab fa-facebook-f"></i></a></li>
-                                    <li class="list-inline-item"><a href="classic.html#"><i
-                                                class="fab fa-twitter"></i></a></li>
+                                    <li class="list-inline-item"><a href="classic.html#"><i class="fab fa-twitter"></i></a>
+                                    </li>
                                     <li class="list-inline-item"><a href="classic.html#"><i
                                                 class="fab fa-instagram"></i></a></li>
                                     <li class="list-inline-item"><a href="classic.html#"><i
                                                 class="fab fa-pinterest"></i></a></li>
-                                    <li class="list-inline-item"><a href="classic.html#"><i
-                                                class="fab fa-medium"></i></a></li>
+                                    <li class="list-inline-item"><a href="classic.html#"><i class="fab fa-medium"></i></a>
+                                    </li>
                                     <li class="list-inline-item"><a href="classic.html#"><i
                                                 class="fab fa-youtube"></i></a></li>
                                 </ul>

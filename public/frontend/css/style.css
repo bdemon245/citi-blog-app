@@ -1234,6 +1234,10 @@ section {
   margin-right: 12px;
   vertical-align: middle;
 }
+.avatar{
+  width: 36px;
+  border-radius: 50%;
+}
 .post .post-bottom .social-share .toggle-button {
   font-size: 16px;
   color: #9faabb;

@@ -19,12 +19,12 @@ class UserFactory extends Factory
     {
         $firstName = fake()->firstName();
         $lastName = fake()->lastName();
-        $initials = $firstName[0] . $lastName[0];
+        $avatar = "https://api.dicebear.com/5.x/bottts/svg?seed=$firstName";
 
         return [
             'name' => "$firstName $lastName",
             'email' => fake()->unique()->safeEmail(),
-            'avatar' => fake()->imageUrl(400, 400, null, true, $initials),
+            'avatar' => $avatar,
             'email_verified_at' => now(),
             'password' => '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', // password
             'remember_token' => Str::random(10),
