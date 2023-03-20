@@ -34,9 +34,10 @@ class PostFactory extends Factory
             "title" => $title,
             "slug" => str()->slug($title),
             "content" => fake()->realText(500),
-            "user_id" => fake()->randomElement([1, 2, 3, 4, 5]),
+            "user_id" => fake()->randomElement([1, 2, 3, 4, 5, 6]),
             "category_id" => $categoryId,
             "sub_category_id" => $subId,
+            "is_banner" => 0,
             "featured_img" => "https://picsum.photos/seed/$seed/720/480",
         ];
     }
