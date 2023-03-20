@@ -1,12 +1,5 @@
 @extends('layouts.frontendapp')
 @php
-    function getImage(string $imgUrl)
-    {
-        if (Str::contains($imgUrl, 'uploads/')) {
-            $imgUrl = asset('storage/' . $imgUrl);
-        }
-        return $imgUrl;
-    }
     function readMore($post)
     {
         $value = "<a href='/post/$post->id' style='color: var(--bs-red);'>...Read More</a>";
@@ -50,14 +43,14 @@
                                         @endisset
                                         <a href="{{ route('frontend.show', $post) }}">
                                             <div class="inner">
-                                                <img src="{{ getImage($post->featured_img) }}" alt="{{ $post->slug }}" />
+                                                <img src="{{ setImage($post->featured_img) }}" alt="{{ $post->slug }}" />
                                             </div>
                                         </a>
                                     </div>
                                     <div class="details">
                                         <ul class="meta list-inline mb-0">
                                             <li class="list-inline-item"><a href="{{ route('frontend.show', $post) }}"><img
-                                                        src="{{ getImage($post->user->avatar) }}" class="author avatar"
+                                                        src="{{ setImage($post->user->avatar) }}" class="author avatar"
                                                         alt="author" />{{ $post->user->name }}</a></li>
                                             <li class="list-inline-item">
                                                 {{ Carbon\Carbon::parse($post->created_at)->format('d M Y') }}

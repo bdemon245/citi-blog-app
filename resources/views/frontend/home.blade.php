@@ -1,13 +1,5 @@
 @extends('layouts.frontendapp')
-@php
-    function getImage(string $imgUrl)
-    {
-        if (Str::contains($imgUrl, 'uploads/')) {
-            $imgUrl = asset('storage/' . $imgUrl);
-        }
-        return $imgUrl;
-    }
-@endphp
+
 @section('content')
     <section class="hero-carousel">
         <div class="container-xl">
@@ -28,7 +20,7 @@
                         </div>
                         <a href="{{ route('frontend.show', $banner) }}">
                             <div class="thumb rounded">
-                                <div class="inner data-bg-image" data-bg-image="{{ getImage($banner->featured_img) }}">
+                                <div class="inner data-bg-image" data-bg-image="{{ setImage($banner->featured_img) }}">
                                 </div>
                             </div>
                         </a>
@@ -58,14 +50,14 @@
                                 </span>
                                 <a href="blog-single.html">
                                     <div class="inner">
-                                        <img src="{{ getImage($post->featured_img) }}" alt="post-title" />
+                                        <img src="{{ setImage($post->featured_img) }}" alt="post-title" />
                                     </div>
                                 </a>
                             </div>
                             <div class="details">
                                 <ul class="meta list-inline mb-0">
                                     <li class="list-inline-item"><a href="classic.html#"><img
-                                                src="{{ getImage($post->user->avatar) }}" class="author avatar"
+                                                src="{{ setImage($post->user->avatar) }}" class="author avatar"
                                                 alt="author" />{{ $post->user->name }}</a></li>
                                     <li class="list-inline-item">
                                         {{ Carbon\Carbon::parse($post->created_at)->format('d M Y') }}</li>

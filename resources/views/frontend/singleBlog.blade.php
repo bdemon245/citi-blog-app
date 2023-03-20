@@ -1,13 +1,5 @@
 @extends('layouts.frontendapp')
-@php
-    function getImage(string $imgUrl)
-    {
-        if (Str::contains($imgUrl, 'uploads/')) {
-            $imgUrl = asset('storage/' . $imgUrl);
-        }
-        return $imgUrl;
-    }
-@endphp
+
 @section('content')
     <section class="main-content mt-3">
         <div class="container-xl">
@@ -37,7 +29,7 @@
                             <ul class="meta list-inline mb-0">
                                 <li class="list-inline-item">
                                     <a href="{{ route('frontend.show', $post) }}">
-                                        <img src="{{ getImage($post->user->avatar) }}" class="author avatar"
+                                        <img src="{{ setImage($post->user->avatar) }}" class="author avatar"
                                             alt="{{ 'author-' . $post->user->name }}" />
                                         {{ $post->user->name }} </a>
                                 </li>
@@ -56,7 +48,7 @@
                         </div>
                         <!-- featured image -->
                         <div class="featured-image">
-                            <img src="{{ getImage($post->featured_img) }}" alt="post-title" />
+                            <img src="{{ setImage($post->featured_img) }}" alt="post-title" />
                         </div>
                         <!-- post content -->
                         <div class="post-content clearfix">
@@ -102,7 +94,7 @@
 
                     <div class="about-author padding-30 rounded">
                         <div class="thumb">
-                            <img src="{{ getImage($post->user->avatar) }}" alt="{{ $post->user->name }}" />
+                            <img src="{{ setImage($post->user->avatar) }}" alt="{{ $post->user->name }}" />
                         </div>
                         <div class="details">
                             <h4 class="name"><a href="{{ route('frontend.show', $post) }}">{{ $post->user->name }}</a>

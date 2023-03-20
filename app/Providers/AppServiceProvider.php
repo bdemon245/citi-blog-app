@@ -2,6 +2,7 @@
 
 namespace App\Providers;
 
+use App\Models\Post;
 use App\Models\Category;
 use App\Models\SubCategory;
 use Illuminate\Pagination\Paginator;
@@ -31,6 +32,7 @@ class AppServiceProvider extends ServiceProvider
         view()->composer('*', function ($view) {
             $view->with('categories', Category::with('subCategories')->get());
             $view->with('subCategories', SubCategory::with('category')->get());
+            $view->with("popularPosts", Post::with('category', 'subCategory', 'user')->orderBy('view_count', 'asc')->paginate(5));
         });
     }
 }
