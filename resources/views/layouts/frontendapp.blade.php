@@ -14,9 +14,52 @@
     <link rel="stylesheet" href="{{ asset('frontend/css/slick.css') }}" type="text/css" media="all">
     <link rel="stylesheet" href="{{ asset('frontend/css/simple-line-icons.css') }}" type="text/css" media="all">
     <link rel="stylesheet" href="{{ asset('frontend/css/style.css') }}" type="text/css" media="all">
+
+    {{-- css for scrollbar --}}
+    <style>
+        #style-3::-webkit-scrollbar-track {
+            -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
+            background-color: #F5F5F5;
+        }
+
+        #style-3::-webkit-scrollbar {
+            width: 6px;
+            background-color: #F5F5F5;
+        }
+
+        #style-3::-webkit-scrollbar-thumb {
+            background-color: #FE4F70;
+        }
+
+        .scrollbar {
+            margin-left: 30px;
+            float: right;
+            height: 300px;
+            overflow-y: scroll;
+            margin: 25px 0;
+        }
+
+        .force-overflow {
+            min-height: 450px;
+        }
+    </style>
 </head>
 
 <body>
+    {{-- @php
+        function getImage(string $imgUrl)
+        {
+            if (Str::contains($imgUrl, 'uploads/')) {
+                $imgUrl = asset('storage/' . $imgUrl);
+            }
+            return $imgUrl;
+        }
+        function readMore($post)
+        {
+            $value = "<a href='/post/$post->id' style='color: var(--bs-red);'>...Read More</a>";
+            return $value;
+        }
+    @endphp --}}
 
     <!-- preloader -->
     {{-- <div id="preloader">
@@ -216,24 +259,12 @@
                 <button class="btn btn-default btn-lg" type="submit"><i class="icon-magnifier"></i></button>
             </form>
 
-            <ul style="list-style: none;margin-top: 20px" id="searchResultShow">
-                {{-- <li class="border-bottom py-3">
+            <div class="scrollbar" id="style-3">
+                <ul class="force-overflow" style="list-style: none;margin-top: 20px;" id="searchResultShow">
 
-                    <a href="#">
-                        <div class="row align-items-center">
-                            <div class="col-lg-3">
-                                <img src="https://www.shutterstock.com/image-photo/surreal-image-african-elephant-wearing-260nw-1365289022.jpg"
-                                    alt="">
-                            </div>
-                            <div class="col-lg-9">
-                                <h4>Lorem ipsum dolor sit amet.</h4>
-                            </div>
-                        </div>
-                    </a>
+                </ul>
+            </div>
 
-                </li> --}}
-
-            </ul>
 
 
 
@@ -307,7 +338,7 @@
                     method: 'GET',
                     url: "{{ route('frontend.search.live') }}",
                     data: {
-                        searchText: value
+                        search: value
                     },
                     success: function(data) {
 
@@ -315,23 +346,24 @@
                         let posts = []
                         results.forEach(result => {
 
-                            let url = `{{ route('frontend.show', ':slug') }}`;
-                            url = url.replace(':slug', result.slug)
-
+                            let url = `{{ route('frontend.show', ':post') }}`;
+                            url = url.replace(':post', result.id)
+                            let src = ~result.featured_img.indexOf("uploads/") ?
+                                `storage/${result.featured_img})` : result.featured_img
                             let li = `
-                        <li class="border-bottom py-3">
-                            <a href="${url}">
-                                <div class="row align-items-center">
-                                    <div class="col-lg-3">
-                                        <img src="{{ asset('storage/') }}/${result.featured_img}"  alt="">
-                                    </div>
-                                    <div class="col-lg-9">
-                                        <h4>${result.title}</h4>
-                                    </div>
-                                </div>
-                            </a>
-                        </li>
-                        `;
+                                        <li class="border-bottom py-3">
+                                        <a href="${url}">
+                                            <div class="row align-items-center">
+                                                <div class="col-lg-3">
+                                                    <img src="${src}"  alt="">
+                                                </div>
+                                                <div class="col-lg-9">
+                                                    <h6>${result.title}</h6>
+                                                </div>
+                                            </div>
+                                        </a>
+                                        </li>
+                                        `;
 
                             posts.push(li)
 

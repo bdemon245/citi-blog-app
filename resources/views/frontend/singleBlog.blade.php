@@ -252,6 +252,7 @@
                 let text = $.trim(jQuery($('.post-content')).text()).split(' ') //splittin text
                 let readingTime = Math.round(text.length * (3 / 5) * avg) * 1000 // in ms
                 let id = $('.post-single').attr('id');
+                console.log(readingTime);
                 let url = "{{ route('post.viewCount', ':id') }}"
                 url = url.replace(":id", id)
                 setTimeout(() => {

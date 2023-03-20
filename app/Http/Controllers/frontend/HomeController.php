@@ -33,9 +33,10 @@ class HomeController extends Controller
         return view('frontend.categoryShow', compact('category', 'posts'));
     }
 
-    public function searchLive()
+    public function searchLive(Request $request)
     {
-        # code...
+        $posts = Post::with('user', 'category', 'subCategory')->where('title', 'LIKE', "%$request->search%")->get();
+        return response(json_encode($posts));
     }
     public function showPost(Post $post)
     {
