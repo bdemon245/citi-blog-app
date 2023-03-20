@@ -132,12 +132,13 @@ class AssignPermissionAndRoleSeeder extends Seeder
 
         foreach ($roles as $role => $can) {
             $role = Role::where('name', $role)->first();
+            $permissions = [];
             foreach ($can as $key => $values) {
                 foreach ($values as $value) {
-                    $permission = Permission::where('name', "$key $value")->first();
-                    $role->givePermissionTo($permission);
+                    $permissions[] = Permission::where('name', "$key $value")->first();
                 }
             }
+            $role->syncPermissions($permissions);
         }
     }
 }
