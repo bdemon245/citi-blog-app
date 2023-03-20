@@ -105,22 +105,21 @@
 
                                     </li>
                                     @foreach ($categories as $category)
-                                    <li class="nav-item {{ count($category->subcategories) > 0 ? 'dropdown' : '' }}">
-                                        <a class="nav-link {{ count($category->subcategories) > 0 ? 'dropdown-toggle' : '' }}"
-                                            href="{{ route('frontend.category', $category) }}">{{ $category->title
-                                            }}</a>
-                                        @if (count($category->subcategories) > 0)
-                                        <ul class="dropdown-menu">
-                                            @foreach ($category->subcategories as $subcategory)
-                                            <li><a class="dropdown-item"
-                                                    href="{{ route('frontend.subcategory', $subcategory) }}">{{
-                                                    $subcategory->title
-                                                    }}</a></li>
-                                            @endforeach
+                                        <li
+                                            class="nav-item {{ count($category->subcategories) > 0 ? 'dropdown' : '' }}">
+                                            <a class="nav-link {{ count($category->subcategories) > 0 ? 'dropdown-toggle' : '' }}"
+                                                href="{{ route('frontend.category', $category->id) }}">{{ $category->title }}</a>
+                                            @if (count($category->subcategories) > 0)
+                                                <ul class="dropdown-menu">
+                                                    @foreach ($category->subcategories as $subcategory)
+                                                        <li><a class="dropdown-item"
+                                                                href="{{ route('frontend.subcategory', $subcategory) }}">{{ $subcategory->title }}</a>
+                                                        </li>
+                                                    @endforeach
 
-                                        </ul>
-                                        @endif
-                                    </li>
+                                                </ul>
+                                            @endif
+                                        </li>
                                     @endforeach
 
                                     <li class="nav-item">
@@ -129,9 +128,9 @@
                                     </li>
                                     <li class="nav-item">
                                         @auth
-                                        <a class="nav-link" href="{{ route('login') }}">Your Profile</a>
+                                            <a class="nav-link" href="{{ route('login') }}">Your Profile</a>
                                         @else
-                                        <a class="nav-link" href="{{ route('login') }}">Log In</a>
+                                            <a class="nav-link" href="{{ route('login') }}">Log In</a>
                                         @endauth
 
                                     </li>
@@ -172,15 +171,18 @@
                             <ul class="social-icons list-unstyled list-inline mb-0">
                                 <li class="list-inline-item"><a href="classic.html#"><i
                                             class="fab fa-facebook-f"></i></a></li>
-                                <li class="list-inline-item"><a href="classic.html#"><i class="fab fa-twitter"></i></a>
+                                <li class="list-inline-item"><a href="classic.html#"><i
+                                            class="fab fa-twitter"></i></a>
                                 </li>
                                 <li class="list-inline-item"><a href="classic.html#"><i
                                             class="fab fa-instagram"></i></a></li>
                                 <li class="list-inline-item"><a href="classic.html#"><i
                                             class="fab fa-pinterest"></i></a></li>
-                                <li class="list-inline-item"><a href="classic.html#"><i class="fab fa-medium"></i></a>
+                                <li class="list-inline-item"><a href="classic.html#"><i
+                                            class="fab fa-medium"></i></a>
                                 </li>
-                                <li class="list-inline-item"><a href="classic.html#"><i class="fab fa-youtube"></i></a>
+                                <li class="list-inline-item"><a href="classic.html#"><i
+                                            class="fab fa-youtube"></i></a>
                                 </li>
                             </ul>
                         </div>
@@ -297,24 +299,26 @@
     <script src="{{ asset('frontend/js/custom.js') }}"></script>
 
     <script>
-        $('#searchInput').on('keyup', function(){
-            
+        $('#searchInput').on('keyup', function() {
+
             let value = $(this).val()
-            if(value.length > 3){
-            $.ajax({
-                method: 'GET',
-                url: "{{ route('frontend.search.live') }}",
-                data: {searchText: value},
-                success: function(data){
-                  
-                    let results = JSON.parse(data)
-                    let posts = []
-                    results.forEach(result => {
-                        
-                        let url = `{{ route('frontend.show' , ':slug' ) }}`;
-                        url = url.replace(':slug', result.slug)
-                        
-                        let li = `
+            if (value.length > 3) {
+                $.ajax({
+                    method: 'GET',
+                    url: "{{ route('frontend.search.live') }}",
+                    data: {
+                        searchText: value
+                    },
+                    success: function(data) {
+
+                        let results = JSON.parse(data)
+                        let posts = []
+                        results.forEach(result => {
+
+                            let url = `{{ route('frontend.show', ':slug') }}`;
+                            url = url.replace(':slug', result.slug)
+
+                            let li = `
                         <li class="border-bottom py-3">
                             <a href="${url}">
                                 <div class="row align-items-center">
@@ -329,37 +333,35 @@
                         </li>
                         `;
 
-                        posts.push(li)
-                        
-                    });
+                            posts.push(li)
+
+                        });
 
 
-                    $('#searchResultShow').html(posts)
-
-
-
-
-                },
-                error: function(error){
-                    
-                    $('#searchResultShow').html(`<h5>${error.responseText}</h5>`)
-                }
+                        $('#searchResultShow').html(posts)
 
 
 
 
+                    },
+                    error: function(error) {
 
-            });
-            }
-            else{
+                        $('#searchResultShow').html(`<h5>${error.responseText}</h5>`)
+                    }
+
+
+
+
+
+                });
+            } else {
                 $('#searchResultShow').html('')
             }
 
 
         })
-
-
     </script>
+    @stack('customJs')
 
 </body>
 

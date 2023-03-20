@@ -2,6 +2,8 @@
 
 namespace App\Providers;
 
+use App\Models\Category;
+use App\Models\SubCategory;
 use Illuminate\Pagination\Paginator;
 use Illuminate\Support\ServiceProvider;
 
@@ -23,7 +25,12 @@ class AppServiceProvider extends ServiceProvider
     public function boot(): void
     {
         Paginator::defaultView('vendor.pagination.custom');
- 
         Paginator::defaultSimpleView('vendor.pagination.simple-tailwind');
+
+        // Using view composer to set following variables globally
+        view()->composer('*', function ($view) {
+            $view->with('categories', Category::with('subCategories')->get());
+            $view->with('subCategories', SubCategory::with('category')->get());
+        });
     }
 }

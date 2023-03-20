@@ -2,10 +2,11 @@
 
 namespace App\Http\Controllers\frontend;
 
+use App\Models\Post;
 use App\Models\Category;
+use App\Models\SubCategory;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
-use App\Models\Post;
 
 class HomeController extends Controller
 {
@@ -20,20 +21,36 @@ class HomeController extends Controller
 
     public function showCategoryPost($id)
     {
-        return view('frontend.categoryShow');
+        $category  = Category::find($id);
+        $posts = Post::with('category', 'subCategory', 'user')->where('category_id', $category->id)->paginate(6);
+        return view('frontend.categoryShow', compact('category', 'posts'));
     }
 
     public function showSubCategoryPost($id)
     {
-        return view('frontend.categoryShow');
+        $category  = SubCategory::find($id);
+        $posts = Post::with('category', 'subCategory', 'user')->where('category_id', $category->id)->paginate(6);
+        return view('frontend.categoryShow', compact('category', 'posts'));
     }
 
     public function searchLive()
     {
         # code...
     }
-    public function showPost()
+    public function showPost(Post $post)
     {
-        # code...
+        $post->view_count += 1;
+        $post->save();
+        return view('frontend.singleBlog', compact('post'));
+    }
+
+    public function incrementViewCount($id)
+    {
+        $post = Post::find($id);
+        $post->view_count += 1;
+        return response()->json([
+            'success' => true,
+            'view_count' => $post->view_count
+        ]);
     }
 }

@@ -16,15 +16,17 @@
                 @foreach ($banners as $banner)
                     <div class="post featured-post-xl">
                         <div class="details clearfix">
-                            <a href="category.html" class="category-badge lg">{{ $banner->category->title }}</a>
+                            <a href="{{ route('frontend.category', $banner->category_id) }}"
+                                class="category-badge lg">{{ $banner->category->title }}</a>
                             <h4 class="post-title"><a href="blog-single.html">{{ $banner->title }}</a></h4>
                             <ul class="meta list-inline mb-0">
-                                <li class="list-inline-item"><a href="classic.html#">{{ $banner->user->name }}</a></li>
+                                <li class="list-inline-item"><a
+                                        href="{{ route('frontend.show', $banner) }}">{{ $banner->user->name }}</a></li>
                                 <li class="list-inline-item">
                                     {{ Carbon\Carbon::parse($banner->created_at)->format('d M Y') }}</li>
                             </ul>
                         </div>
-                        <a href="blog-single.html">
+                        <a href="{{ route('frontend.show', $banner) }}">
                             <div class="thumb rounded">
                                 <div class="inner data-bg-image" data-bg-image="{{ getImage($banner->featured_img) }}">
                                 </div>
@@ -49,7 +51,7 @@
                     @foreach ($posts as $post)
                         <div class="post post-classic rounded bordered">
                             <div class="thumb top-rounded">
-                                <a href="category.html"
+                                <a href="{{ route('frontend.category', $post->category) }}"
                                     class="category-badge lg position-absolute">{{ $post->category->title }}</a>
                                 <span class="post-format">
                                     <i class="icon-picture"></i>
@@ -93,7 +95,7 @@
                                     </ul>
                                 </div>
                                 <div class="float-end d-none d-md-block">
-                                    <a href="blog-single.html" class="more-link">Continue reading<i
+                                    <a href="{{ route('frontend.show', $post) }}" class="more-link">Continue reading<i
                                             class="icon-arrow-right"></i></a>
                                 </div>
                                 <div class="more-button d-block d-md-none float-end">
@@ -105,7 +107,7 @@
 
 
                     {{ $posts->links() }}
-                   
+
 
                 </div>
                 <div class="col-lg-4">
@@ -130,8 +132,8 @@
                                                 class="fab fa-pinterest"></i></a></li>
                                     <li class="list-inline-item"><a href="classic.html#"><i class="fab fa-medium"></i></a>
                                     </li>
-                                    <li class="list-inline-item"><a href="classic.html#"><i
-                                                class="fab fa-youtube"></i></a></li>
+                                    <li class="list-inline-item"><a href="classic.html#"><i class="fab fa-youtube"></i></a>
+                                    </li>
                                 </ul>
                             </div>
                         </div>
