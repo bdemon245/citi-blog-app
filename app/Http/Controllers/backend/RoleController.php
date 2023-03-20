@@ -4,6 +4,7 @@ namespace App\Http\Controllers\backend;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use Spatie\Permission\Models\Permission;
 use Spatie\Permission\Models\Role;
 
 class RoleController extends Controller
@@ -35,32 +36,38 @@ class RoleController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(string $id)
+    public function show(Role $role)
     {
-        //
     }
 
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(string $id)
+    public function edit(Role $role)
     {
-        //
+        $permissions = Permission::get();
+        $hasPermissions = $role->permissions()->pluck('id');
+        return view('backend.roles.editRole', compact('role', 'permissions', 'hasPermissions'));
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(Request $request, Role $role)
     {
-        //
+        $role->name = $request->role;
+        $role->update();
+        $role->syncPermissions($request->permissions);
+
+        return redirect()->route('role.index')->with('success', 'role updated');
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(string $id)
+    public function destroy(Role $role)
     {
-        //
+        $role->delete();
+        return back()->with('success', 'role deleted');
     }
 }

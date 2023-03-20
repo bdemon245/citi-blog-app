@@ -12,7 +12,7 @@ use App\Http\Controllers\backend\SubCategoryController;
 
 // Routes for backend activities 
 
-Route::group(['prefix' => "admin"], function () {
+Route::group(['prefix' => "admin", 'middleware' => 'auth'], function () {
     Route::get('/', [DashboardController::class, 'index'])->name('dashboard');
     Route::resource('user', UserController::class)->names([
         'index' => 'user.index',

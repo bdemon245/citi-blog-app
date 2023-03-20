@@ -49,6 +49,14 @@ class AssignPermissionAndRoleSeeder extends Seeder
                     'sub_category',
                     'permission'
                 ],
+                'ban' => [
+                    'user',
+                    'role',
+                    'post',
+                    'category',
+                    'sub_category',
+                    'permission'
+                ],
             ],
             'admin' => [
                 'create' => [
