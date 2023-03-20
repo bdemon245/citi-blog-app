@@ -4,6 +4,7 @@ namespace App\Http\Controllers\backend;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use Spatie\Permission\Models\Role;
 
 class RoleController extends Controller
 {
@@ -12,23 +13,23 @@ class RoleController extends Controller
      */
     public function index()
     {
-        //
+        $roles = Role::get();
+        return view('backend.roles.addRoles', compact('roles'));
     }
 
-    /**
-     * Show the form for creating a new resource.
-     */
-    public function create()
-    {
-        //
-    }
 
     /**
      * Store a newly created resource in storage.
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            'role' => ["required", "unique:roles,name"]
+        ]);
+        $role = Role::create([
+            'name' => $request->role
+        ]);
+        return back(201)->with('success', 'new role created');
     }
 
     /**

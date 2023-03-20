@@ -11,7 +11,8 @@
 
     </li>
     <li>
-        <a href="" class="side-menu {{ request()->routeIs('role.*') ? 'side-menu--active side-menu--open' : '' }}">
+        <a href="{{ route('role.index') }}"
+            class="side-menu {{ request()->routeIs('role.*') ? 'side-menu--active side-menu--open' : '' }}">
             <div class="side-menu__icon"> <i data-feather="home"></i> </div>
             <div class="side-menu__title">
                 Role Management
@@ -22,7 +23,7 @@
     </li>
 
     <li>
-        <a href="/admin/user" class="side-menu">
+        <a href="{{ route('user.index') }}" class="side-menu">
             <div class="side-menu__icon"> <i data-feather="home"></i> </div>
             <div class="side-menu__title">
                 User Management

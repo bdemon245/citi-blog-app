@@ -2,6 +2,7 @@
 
 namespace Database\Seeders;
 
+use App\Models\User;
 use Illuminate\Database\Seeder;
 use Spatie\Permission\Models\Role;
 use Spatie\Permission\Models\Permission;
@@ -15,7 +16,7 @@ class AssignPermissionAndRoleSeeder extends Seeder
     public function run(): void
     {
         $roles = [
-            'super-admin' => [
+            'super admin' => [
                 'create' => [
                     'user',
                     'role',
@@ -140,5 +141,7 @@ class AssignPermissionAndRoleSeeder extends Seeder
             }
             $role->syncPermissions($permissions);
         }
+        $user = User::find(1);
+        $user->assignRole('super admin');
     }
 }
