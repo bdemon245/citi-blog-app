@@ -2,8 +2,12 @@
 
 namespace App\Http\Controllers\backend;
 
-use App\Http\Controllers\Controller;
+use App\Models\User;
 use Illuminate\Http\Request;
+use Spatie\Permission\Models\Role;
+use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Hash;
+use Illuminate\Validation\Rules\Password;
 
 class UserController extends Controller
 {
@@ -12,7 +16,9 @@ class UserController extends Controller
      */
     public function index()
     {
-        //
+        $users = User::with('roles')->get();
+        $roles = Role::get();
+        return view('backend.users.addUsers', compact('roles', 'users'));
     }
 
     /**
@@ -28,7 +34,21 @@ class UserController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            'name' => ['required', 'string', 'max:255'],
+            'email' => ['required', 'string', 'email', 'max:255', 'unique:users,email'],
+            'password' => ['required', 'min:6'],
+            'role' => ['required'],
+        ]);
+        $avatar = "https://api.dicebear.com/5.x/bottts/svg?seed=$request->name&scale=80&radius=50";
+        $user = User::create([
+            'name' => $request->name,
+            'email' => $request->email,
+            'avatar' => $avatar,
+            'password' => Hash::make($request->password),
+        ]);
+        $user->assignRole($request->role);
+        return back(201)->with('success', 'new user created');
     }
 
     /**

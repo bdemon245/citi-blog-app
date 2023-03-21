@@ -43,7 +43,7 @@ class RegisteredUserController extends Controller
             'email' => ['required', 'string', 'email', 'max:255', 'unique:' . User::class],
             'password' => ['required', 'confirmed', Rules\Password::defaults()],
         ]);
-        $avatar = "https://api.dicebear.com/5.x/bottts-neutral/svg?seed=" . $request->name . "&scale=80&radius=50";
+        $avatar = "https://api.dicebear.com/5.x/bottts/svg?seed=" . $request->name . "&scale=80&radius=50";
         $user = User::create([
             'name' => $request->name,
             'email' => $request->email,
