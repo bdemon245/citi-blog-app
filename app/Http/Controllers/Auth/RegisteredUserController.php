@@ -16,7 +16,7 @@ use Illuminate\View\View;
 class RegisteredUserController extends Controller
 {
     /**
-     * Creats an instance as soon as the class has been invoked
+     * Creates an instance as soon as the class has been invoked
      * @return void
      */
     function __construct()
@@ -50,6 +50,7 @@ class RegisteredUserController extends Controller
             'avatar' => $avatar,
             'password' => Hash::make($request->password),
         ]);
+        $user->assignRole('user');
 
         event(new Registered($user));
 
