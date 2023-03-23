@@ -26,6 +26,7 @@ Route::group(['prefix' => "admin", 'middleware' => ['not_role:user', 'auth']], f
         'update' => 'user.update',
         'destroy' => 'user.destroy',
     ])->middleware('role:super admin|admin');
+    Route::patch('user/toggle-ban/{user}', [UserController::class, "toggleBan"])->name('user.toggleBan')->middleware('role:super admin|admin');
 
     //routes for post control
 

@@ -24,6 +24,8 @@ License: You must have a valid license purchased only from themeforest(the above
     <!-- BEGIN: CSS Assets-->
     <link rel="stylesheet" href="{{ asset('backend/dist/css/app.css') }}" />
     <!-- END: CSS Assets-->
+
+    
     @stack('customCss')
 </head>
 <!-- END: Head -->

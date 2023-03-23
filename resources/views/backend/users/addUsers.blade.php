@@ -60,13 +60,15 @@
                         @endforeach
                     </td>
                     <td>
-                        <form action="" method="post">
+                        <form action="{{ route('user.toggleBan', $user) }}" method="post">
                             @csrf
                             @method('PATCH')
                             <button type="submit" href=""
-                                class="btn btn-sm {{ $user->id === auth()->id() ? 'btn-dark disabled' : 'btn-danger' }}">{{ $user->status === 1 ? 'Ban' : 'Unban' }}
+                                style="{{ $user->id === auth()->id() ? 'cursor:not-allowed;' : '' }}"
+                                class="btn btn-sm {{ $user->id === auth()->id() ? 'btn-dark disabled' : 'btn-danger' }} {{ $user->status ? '' : 'btn-dark' }}">{{ $user->status === 1 ? 'Ban' : 'Unban' }}
                         </form>
                         </button>
+
                     </td>
                 </tr>
             @endforeach

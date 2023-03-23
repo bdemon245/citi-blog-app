@@ -97,4 +97,16 @@ class UserController extends Controller
     {
         //
     }
+
+    public function toggleBan(User $user)
+    {
+        $toggle = !$user->status;
+        $msg = 'user is banned';//default msg
+        $user->status = $toggle;
+        $user->update();
+        if ($toggle) {
+            $msg = 'user is unbanned'; //msg if user is unbanned
+        }
+        return back()->with('success', $msg);
+    }
 }
