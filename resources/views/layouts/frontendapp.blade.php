@@ -46,23 +46,9 @@
 </head>
 
 <body>
-    {{-- @php
-        function getImage(string $imgUrl)
-        {
-            if (Str::contains($imgUrl, 'uploads/')) {
-                $imgUrl = asset('storage/' . $imgUrl);
-            }
-            return $imgUrl;
-        }
-        function readMore($post)
-        {
-            $value = "<a href='/post/$post->id' style='color: var(--bs-red);'>...Read More</a>";
-            return $value;
-        }
-    @endphp --}}
 
     <!-- preloader -->
-    {{-- <div id="preloader">
+    <div id="preloader">
         <div class="book">
             <div class="inner">
                 <div class="left"></div>
@@ -90,7 +76,7 @@
                 <li></li>
             </ul>
         </div>
-    </div> --}}
+    </div>
 
     <!-- site wrapper -->
     <div class="site-wrapper">
@@ -107,7 +93,7 @@
 
                         <div class="col-md-4 col-xs-12">
                             <!-- site logo -->
-                            <a class="navbar-brand" href="{{ route('frontend.home') }}">
+                            <a class="navbar-brand" id="top" href="{{ route('frontend.home') }}">
                                 <img src="{{ asset('frontend/images/logo.svg') }}" alt="logo" />
                             </a>
                         </div>
@@ -199,6 +185,7 @@
 
         @yield('content')
 
+        @yield('sidebar')
         <!-- footer -->
         <footer>
             <div class="container-xl">
@@ -232,7 +219,7 @@
 
                         <!-- go to top button -->
                         <div class="col-md-4">
-                            <a href="classic.html#" id="return-to-top" class="float-md-end"><i
+                            <a href="#top" id="return-to-top" class="float-md-end"><i
                                     class="icon-arrow-up"></i>Back to
                                 Top</a>
                         </div>
@@ -278,36 +265,32 @@
 
         <!-- logo -->
         <div class="logo">
-            <img src="images/logo.svg" alt="Katen" />
+            <a href="{{ route('frontend.home') }}">
+                <img src="{{ asset('frontend/images/logo.svg') }}" alt="Katen" />
+            </a>
         </div>
 
         <!-- menu -->
         <nav>
             <ul class="vertical-menu">
                 <li class="active">
-                    <a href="index.html">Home</a>
-                    <ul class="submenu">
-                        <li><a href="index.html">Magazine</a></li>
-                        <li><a href="personal.html">Personal</a></li>
-                        <li><a href="personal-alt.html">Personal Alt</a></li>
-                        <li><a href="minimal.html">Minimal</a></li>
-                        <li><a href="classic.html">Classic</a></li>
-                    </ul>
+                    <a class="" href="{{ route('frontend.home') }}">Home</a>
                 </li>
-                <li><a href="category.html">Lifestyle</a></li>
-                <li><a href="category.html">Inspiration</a></li>
-                <li>
-                    <a href="classic.html#">Pages</a>
-                    <ul class="submenu">
-                        <li><a href="category.html">Category</a></li>
-                        <li><a href="blog-single.html">Blog Single</a></li>
-                        <li><a href="blog-single-alt.html">Blog Single Alt</a></li>
-                        <li><a href="about.html">About</a></li>
-                        <li><a href="contact.html">Contact</a></li>
-                    </ul>
-                </li>
+                @foreach ($categories as $category)
+                    <li class="{{ request()->routeIs('frontend.category', $category->id) ? 'active' : '' }}">
+                        <a href="{{ route('frontend.category', $category->id) }}">{{ $category->title }}</a>
+                        <ul class="submenu">
+                            @foreach ($category->subCategories as $sub)
+                                <li><a href="{{ route('frontend.subcategory', $sub->id) }}">{{ $sub->title }}</a>
+                                </li>
+                            @endforeach
+                        </ul>
+                    </li>
+                @endforeach
                 <li><a href="contact.html">Contact</a></li>
+                <li><a href="contact.html">Log Out</a></li>
             </ul>
+
         </nav>
 
         <!-- social icons -->

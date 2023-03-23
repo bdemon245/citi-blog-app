@@ -15,7 +15,25 @@
                     <ol class="breadcrumb justify-content-center mb-0">
                         <li class="breadcrumb-item"><a href="{{ route('frontend.home') }}">Home</a>
                         </li>
-                        <li class="breadcrumb-item active" aria-current="page">{{ str()->headline($category->title) }}</li>
+
+                        @if (isset($category->subCategories))
+                            <li class="breadcrumb-item active" aria-current="page">
+                                <a
+                                    href="{{ route('frontend.category', $category->id) }}">{{ str()->headline($category->title) }}</a>
+                            </li>
+                        @else
+                            <li class="breadcrumb-item" aria-current="page">
+                                <a href="{{ route('frontend.category', $category->category->id) }}">
+                                    {{ str()->headline($category->category->title) }}
+                                </a>
+                            </li>
+                            <li class="breadcrumb-item active" aria-current="page">
+                                <a href="{{ route('frontend.category', $category->id) }}">
+                                    {{ str()->headline($category->title) }}
+                                </a>
+                            </li>
+                        @endif
+
                     </ol>
                 </nav>
             </div>
@@ -43,7 +61,8 @@
                                         @endisset
                                         <a href="{{ route('frontend.show', $post) }}">
                                             <div class="inner">
-                                                <img src="{{ setImage($post->featured_img) }}" alt="{{ $post->slug }}" />
+                                                <img src="{{ setImage($post->featured_img) }}"
+                                                    alt="{{ $post->slug }}" />
                                             </div>
                                         </a>
                                     </div>
