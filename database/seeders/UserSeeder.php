@@ -17,7 +17,16 @@ class UserSeeder extends Seeder
             'name' => 'Mojahidul Islam',
             'email' => 'admin@gmail.com',
         ]);
+        $author = User::factory()->create([
+            'email' => 'author@gmail.com',
+        ]);
+        $editor = User::factory()->create([
+            'email' => 'editor@gmail.com',
+        ]);
         $superAdmin->assignRole('super admin');
+        $author->assignRole('author');
+        $editor->assignRole('editor');
+
         $users = User::factory(5)->create();
         foreach ($users as $user) {
             $user->assignRole('user');

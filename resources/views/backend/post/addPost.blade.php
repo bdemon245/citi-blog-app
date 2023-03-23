@@ -10,85 +10,87 @@
     <div class="card">
         <div class="card-header">Add Post</div>
         <div class="card-body " style="padding: 20px 40px">
-            <form action="{{ route('post.store') }}" method="POST" enctype="multipart/form-data">
-                @csrf
+            @can('create post')
+                <form action="{{ route('post.store') }}" method="POST" enctype="multipart/form-data">
+                    @csrf
 
-               
-                <div class="row">
-                    <input type="text" name="title" placeholder="Post Title" class="form-control"
-                        style=" margin: 10px 0;">
-                    @error('title')
-                        <span style="color:red">{{ $message }}</span>
-                    @enderror
-                </div>
-                <div class="row">
 
-                    <div class="col">
-                        <select name="category_id" id="" class="form-control flex-grow-1" style=" margin: 10px 0;">
-                            <option selected disabled>Select Category</option>
-                            @foreach ($categories as $category)
-                                <option class="category" value="{{ $category->id }}">{{ $category->title }}</option>
-                            @endforeach
-                        </select>
-                        @error('category_id')
-                            <span style="color:red">{{ $message }}</span>
-                        @enderror
-                    </div>
-                    <div class="col">
-                        <select name="sub_category_id" id="" class="form-control flex-grow-1"
+                    <div class="row">
+                        <input type="text" name="title" placeholder="Post Title" class="form-control"
                             style=" margin: 10px 0;">
-                            <option selected disabled>Select SubCategory</option>
-                            @foreach ($subCategories as $subcategory)
-                                <option class="subs-{{ $subcategory->category_id }}"
-                                    id="sub-{{ $subcategory->category_id }}" value="{{ $subcategory->id }}">
-                                    {{ $subcategory->title }}</option>
-                            @endforeach
-                        </select>
-                        @error('sub_category_id')
+                        @error('title')
+                            <span style="color:red">{{ $message }}</span>
+                        @enderror
+                    </div>
+                    <div class="row">
+
+                        <div class="col">
+                            <select name="category_id" id="" class="form-control flex-grow-1" style=" margin: 10px 0;">
+                                <option selected disabled>Select Category</option>
+                                @foreach ($categories as $category)
+                                    <option class="category" value="{{ $category->id }}">{{ $category->title }}</option>
+                                @endforeach
+                            </select>
+                            @error('category_id')
+                                <span style="color:red">{{ $message }}</span>
+                            @enderror
+                        </div>
+                        <div class="col">
+                            <select name="sub_category_id" id="" class="form-control flex-grow-1"
+                                style=" margin: 10px 0;">
+                                <option selected disabled>Select SubCategory</option>
+                                @foreach ($subCategories as $subcategory)
+                                    <option class="subs-{{ $subcategory->category_id }}"
+                                        id="sub-{{ $subcategory->category_id }}" value="{{ $subcategory->id }}">
+                                        {{ $subcategory->title }}</option>
+                                @endforeach
+                            </select>
+                            @error('sub_category_id')
+                                <span style="color:red">{{ $message }}</span>
+                            @enderror
+                        </div>
+
+                        <div class="col">
+                            <select name="type" class="form-control" style=" margin: 10px 0;">
+                                <option selected disabled>Select Type</option>
+                                <option value="trending">Trending</option>
+                                <option value="hot">Hot Topic</option>
+                            </select>
+                            @error('type')
+                                <span style="color:red">{{ $message }}</span>
+                            @enderror
+                        </div>
+
+
+                    </div>
+
+                    <div class="row">
+                        <label for="">
+                            Featured Image
+                            <input type="file" name="featured_img" class="form-control">
+                            @error('featured_img')
+                                <span style="color:red">{{ $message }}</span>
+                            @enderror
+                        </label>
+                    </div>
+
+
+
+                    <div class="editor" style="margin: 20px 0">
+                        <textarea name="content" id="content" class="form-control" placeholder="Editor or Content Here"></textarea>
+                        @error('content')
                             <span style="color:red">{{ $message }}</span>
                         @enderror
                     </div>
 
-                    <div class="col">
-                        <select name="type" class="form-control" style=" margin: 10px 0;">
-                            <option selected disabled>Select Type</option>
-                            <option value="trending">Trending</option>
-                            <option value="hot">Hot Topic</option>
-                        </select>
-                        @error('type')
-                            <span style="color:red">{{ $message }}</span>
-                        @enderror
-                    </div>
+                    {{-- <div class="row">
+                <input type="text" name="tags" class="form-control" placeholder="Hash Tags">
+            </div> --}}
 
+                    <button class="btn-primary btn" style="width:100%;margin:20px 0;">Submit</button>
 
-                </div>
-
-                <div class="row">
-                    <label for="">
-                        Featured Image
-                        <input type="file" name="featured_img" class="form-control">
-                        @error('featured_img')
-                            <span style="color:red">{{ $message }}</span>
-                        @enderror
-                    </label>
-                </div>
-
-
-
-                <div class="editor" style="margin: 20px 0">
-                    <textarea name="content" id="content" class="form-control" placeholder="Editor or Content Here"></textarea>
-                    @error('content')
-                        <span style="color:red">{{ $message }}</span>
-                    @enderror
-                </div>
-
-                {{-- <div class="row">
-                    <input type="text" name="tags" class="form-control" placeholder="Hash Tags">
-                </div> --}}
-
-                <button class="btn-primary btn" style="width:100%;margin:20px 0;">Submit</button>
-
-            </form>
+                </form>
+            @endcan
         </div>
     </div>
 @endsection

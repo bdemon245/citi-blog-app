@@ -12,7 +12,7 @@ use App\Http\Controllers\backend\SubCategoryController;
 
 // Routes for backend activities 
 
-Route::group(['prefix' => "admin", 'middleware' => ['not_role:user'],], function () {
+Route::group(['prefix' => "admin", 'middleware' => ['not_role:user', 'auth']], function () {
     //route for admin dashboard
     Route::get('/', [DashboardController::class, 'index'])->name('dashboard');
 
@@ -39,7 +39,7 @@ Route::group(['prefix' => "admin", 'middleware' => ['not_role:user'],], function
         'destroy' => 'post.destroy',
     ]);
 
-    Route::patch('post/{post}/toggle-banner', [PostController::class, 'toggleBanner'])->name('post.toggleBanner')->middleware('permission:ban post');
+    Route::patch('post/{post}/toggle-banner', [PostController::class, 'toggleBanner'])->name('post.toggleBanner')->middleware('permission:toggle post');
 
     //routes for role control
     Route::resource('role', RoleController::class)->names([

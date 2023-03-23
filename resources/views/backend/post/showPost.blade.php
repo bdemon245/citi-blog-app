@@ -1,13 +1,5 @@
 @extends('layouts.backendapp')
-@php
-    function getImage(string $imgUrl)
-    {
-        if (Str::contains($imgUrl, 'uploads/')) {
-            $imgUrl = asset('storage/' . $imgUrl);
-        }
-        return $imgUrl;
-    }
-@endphp
+
 @push('customCss')
     <style>
 
@@ -25,7 +17,7 @@
                 {!! $post->content !!}
             </div>
             <div class="mt-3">
-                <img src="{{ getImage($post->featured_img) }}" alt="{{ $post->slug }}">
+                <img src="{{ setImage($post->featured_img) }}" alt="{{ $post->slug }}">
 
             </div>
         </div>

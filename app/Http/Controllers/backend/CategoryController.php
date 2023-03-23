@@ -12,6 +12,22 @@ use Illuminate\Http\Request;
 class CategoryController extends Controller
 {
     use MakeSlug;
+
+    public function __construct()
+    {
+        $this->middleware('permission:read category', [
+            'only' => ['index', 'show']
+        ]);
+        $this->middleware('permission:create category',   [
+            'only' => ['create', 'store']
+        ]);
+        $this->middleware('permission:update category',   [
+            'only' => ['update', 'edit']
+        ]);
+        $this->middleware('permission:delete category',  [
+            'only' => ['destroy']
+        ]);
+    }
     /**
      * Display a listing of the resource.
      */

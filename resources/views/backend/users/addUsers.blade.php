@@ -60,16 +60,13 @@
                         @endforeach
                     </td>
                     <td>
-                        @if ($user->status == 1)
-                            <a href=""
-                                class="btn-danger btn btn-sm {{ $user->id == auth()->user()->id ? 'disabled' : '' }}">Ban
-                                User</a>
-                        @else
-                            <a href=""
-                                class="btn-success btn btn-sm {{ $user->id == auth()->user()->id ? 'disabled' : '' }}">Active
-                                User</a>
-                        @endif
-
+                        <form action="" method="post">
+                            @csrf
+                            @method('PATCH')
+                            <button type="submit" href=""
+                                class="btn btn-sm {{ $user->id === auth()->id() ? 'btn-dark disabled' : 'btn-danger' }}">{{ $user->status === 1 ? 'Ban' : 'Unban' }}
+                        </form>
+                        </button>
                     </td>
                 </tr>
             @endforeach

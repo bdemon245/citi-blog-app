@@ -14,12 +14,32 @@ use App\Http\Requests\StorePostRequest;
 class PostController extends Controller
 {
     use MakeSlug;
+
+    public function __construct()
+    {
+        $this->middleware('permission:read post', [
+            'only' => ['index', 'show']
+        ]);
+        $this->middleware('permission:create post',   [
+            'only' => ['create', 'store']
+        ]);
+        $this->middleware('permission:update post',   [
+            'only' => ['update', 'edit']
+        ]);
+        $this->middleware('permission:delete post',  [
+            'only' => ['destroy']
+        ]);
+    }
     /**
      * Display a listing of the resource.
      */
     public function index()
     {
-        $posts = Post::with('category', 'subCategory')->latest()->paginate(10);
+        $query = [];
+        if (!auth()->user()->hasRole(['super admin', 'admin', 'editor'])) {
+            $query[] = ['user_id', '=', auth()->id()];
+        }
+        $posts = Post::with('category', 'subCategory', 'user')->where($query)->orderBy('is_banner')->paginate(10);
 
         return view('backend.post.allPost', compact('posts'));
     }

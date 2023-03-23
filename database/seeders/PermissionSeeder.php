@@ -20,7 +20,6 @@ class PermissionSeeder extends Seeder
                 'post',
                 'category',
                 'sub_category',
-                'permission'
             ],
             'read' => [
                 'user',
@@ -28,7 +27,6 @@ class PermissionSeeder extends Seeder
                 'post',
                 'category',
                 'sub_category',
-                'permission'
             ],
             'update' => [
                 'user',
@@ -36,7 +34,6 @@ class PermissionSeeder extends Seeder
                 'post',
                 'category',
                 'sub_category',
-                'permission'
             ],
             'delete' => [
                 'user',
@@ -44,14 +41,15 @@ class PermissionSeeder extends Seeder
                 'post',
                 'category',
                 'sub_category',
-                'permission'
             ],
             'ban' => [
                 'user',
                 'role',
+            ],
+            'toggle' => [
+                'user',
+                'role',
                 'post',
-                'category',
-                'sub_category',
                 'permission'
             ],
         ];

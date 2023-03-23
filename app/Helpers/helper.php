@@ -2,7 +2,6 @@
 
 use App\Helpers\Records;
 use Illuminate\Support\Str;
-use Illuminate\Support\Facades\DB;
 
 /**
  * Counts the specified records and returns the value

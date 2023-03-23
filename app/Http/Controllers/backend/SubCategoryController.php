@@ -11,6 +11,21 @@ use App\Traits\MakeSlug;
 class SubCategoryController extends Controller
 {
     use MakeSlug;
+    public function __construct()
+    {
+        $this->middleware('permission:read sub_category', [
+            'only' => ['index', 'show']
+        ]);
+        $this->middleware('permission:create sub_category',   [
+            'only' => ['create', 'store']
+        ]);
+        $this->middleware('permission:update sub_category',   [
+            'only' => ['update', 'edit']
+        ]);
+        $this->middleware('permission:delete sub_category',  [
+            'only' => ['destroy']
+        ]);
+    }
     /**
      * Display a listing of the resource.
      */

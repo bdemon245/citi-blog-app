@@ -11,6 +11,21 @@ use Illuminate\Validation\Rules\Password;
 
 class UserController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('permission:read user', [
+            'only' => ['index', 'show']
+        ]);
+        $this->middleware('permission:create user',   [
+            'only' => ['create', 'store']
+        ]);
+        $this->middleware('permission:update user',   [
+            'only' => ['update', 'edit']
+        ]);
+        $this->middleware('permission:delete user',  [
+            'only' => ['destroy']
+        ]);
+    }
     /**
      * Display a listing of the resource.
      */
