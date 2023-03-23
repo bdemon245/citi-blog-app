@@ -1,5 +1,4 @@
-@extends('layouts.frontendapp')
-@section('sidebar')
+
     <div class="col-lg-4">
 
         <!-- sidebar -->
@@ -120,4 +119,3 @@
         </div>
 
     </div>
-@endsection
