@@ -13,11 +13,11 @@ class PostSeeder extends Seeder
      */
     public function run(): void
     {
-        Post::factory(50)->create();
-
         //create 5 post where is banner is active
         Post::factory(5)->create([
             "is_banner" => 1
         ]);
+
+        Post::factory(45)->create();
     }
 }

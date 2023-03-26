@@ -41,8 +41,8 @@ class HomeController extends Controller
     }
     public function showPost(Post $post)
     {
-        $post->view_count += 1;
-        $post->save();
+        $post = Post::where('id', $post->id)->with('user', 'comments', 'comments.replies')->first();
+        // dd($post);
         return view('frontend.singleBlog', compact('post'));
     }
 

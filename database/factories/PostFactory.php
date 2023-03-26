@@ -18,7 +18,7 @@ class PostFactory extends Factory
      */
     public function definition(): array
     {
-        $title = fake()->realText(60);
+        $title = fake()->realText(40);
         $seed = substr($title, 0, 5);
         $map = [
             [1, 2, 3],
