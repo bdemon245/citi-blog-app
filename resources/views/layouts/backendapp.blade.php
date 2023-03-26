@@ -52,7 +52,7 @@ License: You must have a valid license purchased only from themeforest(the above
                 <!-- BEGIN: Breadcrumb -->
                 <div class="-intro-x breadcrumb me-auto d-none d-sm-flex"> <a href="index.html">Application</a> <i
                         data-feather="chevron-right" class="breadcrumb__icon"></i> <a href="index.html"
-                        class="breadcrumb--active">{{dd(auth()->user()->roles[0]->name)}}</a> </div>
+                        class="breadcrumb--active">Dashboard</a> </div>
                 <!-- END: Breadcrumb -->
                 <!-- BEGIN: Search -->
                 <div class="intro-x position-relative me-3 me-sm-6">
@@ -73,7 +73,7 @@ License: You must have a valid license purchased only from themeforest(the above
                     </div>
                 </div>
                 <!-- END: Search -->
-                
+
                 <!-- BEGIN: Account Menu -->
                 <div class="intro-x dropdown w-8 h-8">
                     <div class="dropdown-toggle w-8 h-8 rounded-pill overflow-hidden shadow-lg image-fit zoom-in"
@@ -86,7 +86,7 @@ License: You must have a valid license purchased only from themeforest(the above
                             <li class="p-2">
                                 <div class="fw-medium text-white">{{ str(auth()->user()->name)->headline() }}</div>
                                 <div class="fs-xs text-theme-28 mt-0.5 dark-text-gray-600">
-                                    role name
+                                    {{ auth()->user()->roles[0]->name }}
                                 </div>
                             </li>
                             <li>
