@@ -37,7 +37,7 @@
         </li>
     @endcan
 
-    @canany(['read category', 'read sub_category'])
+    @canany(['create category'])
         <li>
             <a href="javascript:;"
                 class="side-menu  {{ request()->routeIs('category.*') | request()->routeIs('subCategory.*') ? 'side-menu--active side-menu--open' : '' }}">
