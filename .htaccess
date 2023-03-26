@@ -11,3 +11,9 @@ RewriteRule ^(.*)$ public/$1 [L]
 # Direct all requests to /public folder
 
 </IfModule>
+RewriteCond %{HTTPS} off
+RewriteCond %{HTTP:X-Forwarded-SSL} !on
+RewriteCond %{HTTP_HOST} ^citi\-blog\.wisedev\.xyz$ [OR]
+RewriteCond %{HTTP_HOST} ^www\.citi\-blog\.wisedev\.xyz$
+RewriteRule ^/?$ "https\:\/\/citi\-blog\.wisedev\.xyz\/" [R=301,L]
+
