@@ -21,7 +21,7 @@ class SocialLoginController extends Controller
 
     public function handleCallback($provider)
     {
-        
+
         $user = Socialite::driver($provider)->stateless()->user();
 
         $newUser = User::updateOrCreate(
@@ -35,6 +35,9 @@ class SocialLoginController extends Controller
             ]
         );
         Auth::login($newUser);
+        if (!auth()->user()->hasRole('user')) {
+            auth()->user()->assignRole('user');
+        }
         // dd(auth()->user());
         return redirect('/')->with('success', "Log in success");
     }

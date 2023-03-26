@@ -73,118 +73,7 @@ License: You must have a valid license purchased only from themeforest(the above
                     </div>
                 </div>
                 <!-- END: Search -->
-                <!-- BEGIN: Notifications -->
-                <div class="intro-x dropdown me-auto me-sm-6">
-                    <div class="dropdown-toggle notification notification--bullet cursor-pointer" role="button"
-                        aria-expanded="false" data-bs-toggle="dropdown"> <i data-feather="bell"
-                            class="notification__icon dark-text-gray-300"></i> </div>
-                    <div class="notification-content pt-2 dropdown-menu">
-                        <div class="notification-content__box dropdown-content">
-                            <div class="notification-content__title dark-text-gray-300">Notifications</div>
-                            <div class="cursor-pointer position-relative d-flex align-items-center ">
-                                <div class="w-12 h-12 flex-none image-fit me-1">
-                                    <img alt="Rubick Bootstrap HTML Admin Template" class="rounded-pill"
-                                        src="dist/images/profile-14.jpg">
-                                    <div
-                                        class="w-3 h-3 bg-theme-9 position-absolute end-0 bottom-0 rounded-pill border-2 border-white dark-border-dark-3">
-                                    </div>
-                                </div>
-                                <div class="ms-2 overflow-hidden">
-                                    <div class="d-flex align-items-center">
-                                        <a href="javascript:;" class="fw-medium truncate me-5 dark-text-gray-300">Robert
-                                            De Niro</a>
-                                        <div class="fs-xs text-gray-500 ms-auto text-nowrap">01:10 PM</div>
-                                    </div>
-                                    <div class="w-full truncate text-gray-600 mt-0.5">Lorem Ipsum is simply dummy text
-                                        of the printing and typesetting industry. Lorem Ipsum has been the
-                                        industry&#039;s standard dummy text ever since the 1500</div>
-                                </div>
-                            </div>
-                            <div class="cursor-pointer position-relative d-flex align-items-center mt-5">
-                                <div class="w-12 h-12 flex-none image-fit me-1">
-                                    <img alt="Rubick Bootstrap HTML Admin Template" class="rounded-pill"
-                                        src="dist/images/profile-3.jpg">
-                                    <div
-                                        class="w-3 h-3 bg-theme-9 position-absolute end-0 bottom-0 rounded-pill border-2 border-white dark-border-dark-3">
-                                    </div>
-                                </div>
-                                <div class="ms-2 overflow-hidden">
-                                    <div class="d-flex align-items-center">
-                                        <a href="javascript:;"
-                                            class="fw-medium truncate me-5 dark-text-gray-300">Angelina Jolie</a>
-                                        <div class="fs-xs text-gray-500 ms-auto text-nowrap">06:05 AM</div>
-                                    </div>
-                                    <div class="w-full truncate text-gray-600 mt-0.5">It is a long established fact
-                                        that
-                                        a reader will be distracted by the readable content of a page when looking at
-                                        its layout. The point of using Lorem </div>
-                                </div>
-                            </div>
-                            <div class="cursor-pointer position-relative d-flex align-items-center mt-5">
-                                <div class="w-12 h-12 flex-none image-fit me-1">
-                                    <img alt="Rubick Bootstrap HTML Admin Template" class="rounded-pill"
-                                        src="dist/images/profile-5.jpg">
-                                    <div
-                                        class="w-3 h-3 bg-theme-9 position-absolute end-0 bottom-0 rounded-pill border-2 border-white dark-border-dark-3">
-                                    </div>
-                                </div>
-                                <div class="ms-2 overflow-hidden">
-                                    <div class="d-flex align-items-center">
-                                        <a href="javascript:;" class="fw-medium truncate me-5 dark-text-gray-300">Robert
-                                            De Niro</a>
-                                        <div class="fs-xs text-gray-500 ms-auto text-nowrap">05:09 AM</div>
-                                    </div>
-                                    <div class="w-full truncate text-gray-600 mt-0.5">It is a long established fact
-                                        that
-                                        a reader will be distracted by the readable content of a page when looking at
-                                        its layout. The point of using Lorem </div>
-                                </div>
-                            </div>
-                            <div class="cursor-pointer position-relative d-flex align-items-center mt-5">
-                                <div class="w-12 h-12 flex-none image-fit me-1">
-                                    <img alt="Rubick Bootstrap HTML Admin Template" class="rounded-pill"
-                                        src="dist/images/profile-1.jpg">
-                                    <div
-                                        class="w-3 h-3 bg-theme-9 position-absolute end-0 bottom-0 rounded-pill border-2 border-white dark-border-dark-3">
-                                    </div>
-                                </div>
-                                <div class="ms-2 overflow-hidden">
-                                    <div class="d-flex align-items-center">
-                                        <a href="javascript:;"
-                                            class="fw-medium truncate me-5 dark-text-gray-300">Bruce
-                                            Willis</a>
-                                        <div class="fs-xs text-gray-500 ms-auto text-nowrap">03:20 PM</div>
-                                    </div>
-                                    <div class="w-full truncate text-gray-600 mt-0.5">Lorem Ipsum is simply dummy text
-                                        of the printing and typesetting industry. Lorem Ipsum has been the
-                                        industry&#039;s standard dummy text ever since the 1500</div>
-                                </div>
-                            </div>
-                            <div class="cursor-pointer position-relative d-flex align-items-center mt-5">
-                                <div class="w-12 h-12 flex-none image-fit me-1">
-                                    <img alt="Rubick Bootstrap HTML Admin Template" class="rounded-pill"
-                                        src="dist/images/profile-5.jpg">
-                                    <div
-                                        class="w-3 h-3 bg-theme-9 position-absolute end-0 bottom-0 rounded-pill border-2 border-white dark-border-dark-3">
-                                    </div>
-                                </div>
-                                <div class="ms-2 overflow-hidden">
-                                    <div class="d-flex align-items-center">
-                                        <a href="javascript:;"
-                                            class="fw-medium truncate me-5 dark-text-gray-300">Kevin
-                                            Spacey</a>
-                                        <div class="fs-xs text-gray-500 ms-auto text-nowrap">01:10 PM</div>
-                                    </div>
-                                    <div class="w-full truncate text-gray-600 mt-0.5">It is a long established fact
-                                        that
-                                        a reader will be distracted by the readable content of a page when looking at
-                                        its layout. The point of using Lorem </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <!-- END: Notifications -->
+                
                 <!-- BEGIN: Account Menu -->
                 <div class="intro-x dropdown w-8 h-8">
                     <div class="dropdown-toggle w-8 h-8 rounded-pill overflow-hidden shadow-lg image-fit zoom-in"
@@ -196,7 +85,7 @@ License: You must have a valid license purchased only from themeforest(the above
                         <ul class="dropdown-content bg-theme-26 dark-bg-dark-6 text-white">
                             <li class="p-2">
                                 <div class="fw-medium text-white">{{ str(auth()->user()->name)->headline() }}</div>
-                                <div class="fs-xs text-theme-28 mt-0.5 dark-text-gray-600">DevOps Engineer</div>
+                                <div class="fs-xs text-theme-28 mt-0.5 dark-text-gray-600">{{auth()->user()->roles->first()->name}}</div>
                             </li>
                             <li>
                                 <hr class="dropdown-divider border-theme-27 dark-border-dark-3">
