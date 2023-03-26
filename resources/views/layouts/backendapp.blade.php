@@ -86,7 +86,7 @@ License: You must have a valid license purchased only from themeforest(the above
                             <li class="p-2">
                                 <div class="fw-medium text-white">{{ str(auth()->user()->name)->headline() }}</div>
                                 <div class="fs-xs text-theme-28 mt-0.5 dark-text-gray-600">
-                                    {{ auth()->user()->roles[0]->name }}
+                                    {{ str()->headline(auth()->user()->roles[0]->name) }}
                                 </div>
                             </li>
                             <li>
