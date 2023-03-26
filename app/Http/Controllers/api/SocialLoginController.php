@@ -21,11 +21,9 @@ class SocialLoginController extends Controller
 
     public function handleCallback($provider)
     {
-        dd("ok");
+        
         $user = Socialite::driver($provider)->stateless()->user();
 
-        // dd($user);
-        // dd('ok');
         $newUser = User::updateOrCreate(
             [
                 'email' => $user->email,
