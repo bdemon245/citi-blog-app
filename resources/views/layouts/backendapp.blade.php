@@ -25,12 +25,15 @@ License: You must have a valid license purchased only from themeforest(the above
     <link rel="stylesheet" href="{{ asset('backend/dist/css/app.css') }}" />
     <!-- END: CSS Assets-->
 
-    
+
     @stack('customCss')
 </head>
 <!-- END: Head -->
 
 <body class="main">
+    {{-- Alerts --}}
+    <x-ui.alert />
+    {{-- /Alerts --}}
 
     <div class="d-flex">
         <!-- BEGIN: Side Menu -->
@@ -54,7 +57,7 @@ License: You must have a valid license purchased only from themeforest(the above
                 <!-- BEGIN: Search -->
                 <div class="intro-x position-relative me-3 me-sm-6">
                     <div class="search d-none d-sm-block">
-                        <input type="text" class="search__input form-control border-transparent"
+                        <input type="text" id="searchInput" class="search__input form-control border-transparent"
                             placeholder="Search...">
                         <i data-feather="search" class="search__icon dark-text-gray-300"></i>
                     </div>
@@ -62,103 +65,10 @@ License: You must have a valid license purchased only from themeforest(the above
                             class="notification__icon dark-text-gray-300"></i> </a>
                     <div class="search-result">
                         <div class="search-result__content">
-                            <div class="search-result__content__title">Pages</div>
-                            <div class="mb-5">
-                                <a href="index.html" class="d-flex align-items-center">
-                                    <div
-                                        class="w-8 h-8 bg-theme-18 text-theme-9 d-flex align-items-center justify-content-center rounded-circle">
-                                        <i class="w-4 h-4" data-feather="inbox"></i>
-                                    </div>
-                                    <div class="ms-3">Mail Settings</div>
-                                </a>
-                                <a href="index.html" class="d-flex align-items-center mt-2">
-                                    <div
-                                        class="w-8 h-8 bg-theme-17 text-theme-11 d-flex align-items-center justify-content-center rounded-circle">
-                                        <i class="w-4 h-4" data-feather="users"></i>
-                                    </div>
-                                    <div class="ms-3">Users & Permissions</div>
-                                </a>
-                                <a href="index.html" class="d-flex align-items-center mt-2">
-                                    <div
-                                        class="w-8 h-8 bg-theme-14 text-theme-10 d-flex align-items-center justify-content-center rounded-circle">
-                                        <i class="w-4 h-4" data-feather="credit-card"></i>
-                                    </div>
-                                    <div class="ms-3">Transactions Report</div>
-                                </a>
-                            </div>
-                            <div class="search-result__content__title">Users</div>
-                            <div class="mb-5">
-                                <a href="index.html" class="d-flex align-items-center mt-2">
-                                    <div class="w-8 h-8 image-fit">
-                                        <img alt="Rubick Tailwind HTML Admin Template" class="rounded-circle"
-                                            src="dist/images/profile-14.jpg">
-                                    </div>
-                                    <div class="ms-3">{{ auth()->user() }}</div>
-                                    <div class="ms-auto w-48 truncate text-gray-600 fs-xs text-end">
-                                        robertdeniro@left4code.com</div>
-                                </a>
-                                <a href="index.html" class="d-flex align-items-center mt-2">
-                                    <div class="w-8 h-8 image-fit">
-                                        <img alt="Rubick Tailwind HTML Admin Template" class="rounded-circle"
-                                            src="dist/images/profile-3.jpg">
-                                    </div>
-                                    <div class="ms-3">Angelina Jolie</div>
-                                    <div class="ms-auto w-48 truncate text-gray-600 fs-xs text-end">
-                                        angelinajolie@left4code.com</div>
-                                </a>
-                                <a href="index.html" class="d-flex align-items-center mt-2">
-                                    <div class="w-8 h-8 image-fit">
-                                        <img alt="Rubick Tailwind HTML Admin Template" class="rounded-circle"
-                                            src="dist/images/profile-5.jpg">
-                                    </div>
-                                    <div class="ms-3">{{ auth()->user() }}</div>
-                                    <div class="ms-auto w-48 truncate text-gray-600 fs-xs text-end">
-                                        robertdeniro@left4code.com</div>
-                                </a>
-                                <a href="index.html" class="d-flex align-items-center mt-2">
-                                    <div class="w-8 h-8 image-fit">
-                                        <img alt="Rubick Tailwind HTML Admin Template" class="rounded-circle"
-                                            src="dist/images/profile-1.jpg">
-                                    </div>
-                                    <div class="ms-3">Bruce Willis</div>
-                                    <div class="ms-auto w-48 truncate text-gray-600 fs-xs text-end">
-                                        brucewillis@left4code.com</div>
-                                </a>
-                            </div>
                             <div class="search-result__content__title">Products</div>
-                            <a href="index.html" class="d-flex align-items-center mt-2">
-                                <div class="w-8 h-8 image-fit">
-                                    <img alt="Rubick Tailwind HTML Admin Template" class="rounded-circle"
-                                        src="dist/images/preview-4.jpg">
-                                </div>
-                                <div class="ms-3">Sony Master Series A9G</div>
-                                <div class="ms-auto w-48 truncate text-gray-600 fs-xs text-end">Electronic</div>
-                            </a>
-                            <a href="index.html" class="d-flex align-items-center mt-2">
-                                <div class="w-8 h-8 image-fit">
-                                    <img alt="Rubick Tailwind HTML Admin Template" class="rounded-circle"
-                                        src="dist/images/preview-1.jpg">
-                                </div>
-                                <div class="ms-3">Samsung Q90 QLED TV</div>
-                                <div class="ms-auto w-48 truncate text-gray-600 fs-xs text-end">Electronic</div>
-                            </a>
-                            <a href="index.html" class="d-flex align-items-center mt-2">
-                                <div class="w-8 h-8 image-fit">
-                                    <img alt="Rubick Tailwind HTML Admin Template" class="rounded-circle"
-                                        src="dist/images/preview-11.jpg">
-                                </div>
-                                <div class="ms-3">Samsung Q90 QLED TV</div>
-                                <div class="ms-auto w-48 truncate text-gray-600 fs-xs text-end">Electronic</div>
-                            </a>
-                            <a href="index.html" class="d-flex align-items-center mt-2">
-                                <div class="w-8 h-8 image-fit">
-                                    <img alt="Rubick Tailwind HTML Admin Template" class="rounded-circle"
-                                        src="dist/images/preview-5.jpg">
-                                </div>
-                                <div class="ms-3">Nike Tanjun</div>
-                                <div class="ms-auto w-48 truncate text-gray-600 fs-xs text-end">Sport &amp; Outdoor
-                                </div>
-                            </a>
+                            <div id="searchResultShow">
+                                <h3 class="text-center text-theme-9">No products found</h3>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -181,8 +91,7 @@ License: You must have a valid license purchased only from themeforest(the above
                                 </div>
                                 <div class="ms-2 overflow-hidden">
                                     <div class="d-flex align-items-center">
-                                        <a href="javascript:;"
-                                            class="fw-medium truncate me-5 dark-text-gray-300">Robert
+                                        <a href="javascript:;" class="fw-medium truncate me-5 dark-text-gray-300">Robert
                                             De Niro</a>
                                         <div class="fs-xs text-gray-500 ms-auto text-nowrap">01:10 PM</div>
                                     </div>
@@ -221,8 +130,7 @@ License: You must have a valid license purchased only from themeforest(the above
                                 </div>
                                 <div class="ms-2 overflow-hidden">
                                     <div class="d-flex align-items-center">
-                                        <a href="javascript:;"
-                                            class="fw-medium truncate me-5 dark-text-gray-300">Robert
+                                        <a href="javascript:;" class="fw-medium truncate me-5 dark-text-gray-300">Robert
                                             De Niro</a>
                                         <div class="fs-xs text-gray-500 ms-auto text-nowrap">05:09 AM</div>
                                     </div>
@@ -347,11 +255,68 @@ License: You must have a valid license purchased only from themeforest(the above
     <<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.4/jquery.min.js"
         integrity="sha512-pumBsjNRGGqkPzKHndZMaAG+bir374sORyzM3uulLV14lN5LyykqNk8eEeUlUkB3U0M4FApyaHraT65ihJhDpQ=="
         crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-    <script src="{{ asset('backend/dist/js/app.js') }}">
-        < /> <
-        script src = "//cdn.jsdelivr.net/npm/sweetalert2@11" >
-    </script>
+    <script src="{{ asset('backend/dist/js/app.js') }}"></script>
+    {{-- sweetalert2 --}}
+    <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
+    <script>
+        $('#searchInput').on('keyup', function() {
+
+            let value = $(this).val()
+            if (value.length > 3) {
+                $.ajax({
+                    method: 'GET',
+                    url: "{{ route('frontend.search.live') }}",
+                    data: {
+                        search: value
+                    },
+                    success: function(data) {
+
+                        let results = JSON.parse(data)
+                        let posts = []
+                        results.forEach(result => {
+
+                            let url = `{{ route('frontend.show', ':post') }}`;
+                            url = url.replace(':post', result.id)
+                            let src = ~result.featured_img.indexOf("uploads/") ?
+                                `storage/${result.featured_img})` : result.featured_img
+                            let li = `<div class="mb-5">
+                                <a href="index.html" class="row align-items-center">
+                                    <img class="w-24 h-16 col-4 rounded" src="${src}"  />
+                                    <div class="ms-3 col-8">${result.title}</div>
+                                </a>
+                            </div>
+                                        `;
+
+                            posts.push(li)
+
+                        });
+
+
+                        $('#searchResultShow').html(posts)
+
+
+
+
+                    },
+                    error: function(error) {
+
+                        $('#searchResultShow').html(
+                            `<h3 class="text-center text-theme-9">${error.responseText}</h3>`)
+                    }
+
+
+
+
+
+                });
+            } else {
+                $('#searchResultShow').html('')
+            }
+
+
+        })
+    </script>
     @stack('customJs')
 
     <!-- END: JS Assets-->

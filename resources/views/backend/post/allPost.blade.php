@@ -65,6 +65,10 @@
             </tr>
         @endforeach
     </table>
+
+    <div class="mt-3">
+        {{ $posts->links() }}
+    </div>
 @endsection
 @push('customJs')
 @endpush
