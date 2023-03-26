@@ -288,9 +288,20 @@
                         </ul>
                     </li>
                 @endforeach
-                <li>
-                    <a href="{{ route('logout') }}">Log Out</a>
-                </li>
+                @auth
+                    @unlessrole('user')
+                        <li class="">
+                            <a class="" href="{{ route('dashboard') }}">Dashboard</a>
+                        </li>
+                    @endunlessrole
+                    <li class="">
+                        <a class="" href="{{ route('logout') }}">Logout</a>
+                    </li>
+                @else
+                    <li class="">
+                        <a class="" href="{{ route('login') }}">Log In</a>
+                    </li>
+                @endauth
             </ul>
 
         </nav>

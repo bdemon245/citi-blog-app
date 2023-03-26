@@ -18,7 +18,7 @@
                 })
                 Toast.fire({
                     icon: "success",
-                    title: "{{ $success }}",
+                    title: "{{ str()->headline($success) }}",
                 })
             })
         </script>
@@ -46,7 +46,7 @@
                 })
                 Toast.fire({
                     icon: "error",
-                    title: "{{ $error }}",
+                    title: "{{ str()->headline($error) }}",
                 })
             })
         </script>
