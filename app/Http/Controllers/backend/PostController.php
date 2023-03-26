@@ -39,7 +39,7 @@ class PostController extends Controller
         if (!auth()->user()->hasRole(['super admin', 'admin', 'editor'])) {
             $query[] = ['user_id', '=', auth()->id()];
         }
-        $posts = Post::with('category', 'subCategory', 'user')->where($query)->orderBy('is_banner')->paginate(10);
+        $posts = Post::with('category', 'subCategory', 'user')->where($query)->orderBy('is_banner', 'desc')->paginate(10);
 
         return view('backend.post.allPost', compact('posts'));
     }
