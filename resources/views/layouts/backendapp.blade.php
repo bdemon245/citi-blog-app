@@ -52,7 +52,7 @@ License: You must have a valid license purchased only from themeforest(the above
                 <!-- BEGIN: Breadcrumb -->
                 <div class="-intro-x breadcrumb me-auto d-none d-sm-flex"> <a href="index.html">Application</a> <i
                         data-feather="chevron-right" class="breadcrumb__icon"></i> <a href="index.html"
-                        class="breadcrumb--active">{{dd(auth()->user()->roles)}}</a> </div>
+                        class="breadcrumb--active">{{dd(auth()->user()->roles[0]->name)}}</a> </div>
                 <!-- END: Breadcrumb -->
                 <!-- BEGIN: Search -->
                 <div class="intro-x position-relative me-3 me-sm-6">
