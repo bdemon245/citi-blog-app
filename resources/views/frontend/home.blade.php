@@ -10,7 +10,9 @@
                         <div class="details clearfix">
                             <a href="{{ route('frontend.category', $banner->category_id) }}"
                                 class="category-badge lg">{{ $banner->category->title }}</a>
-                            <h4 class="post-title"><a href="blog-single.html">{{ $banner->title }}</a></h4>
+                            <h4 class="post-title"><a
+                                    href="{{ route('frontend.category', $banner->category_id) }}">{{ $banner->title }}</a>
+                            </h4>
                             <ul class="meta list-inline mb-0">
                                 <li class="list-inline-item"><a
                                         href="{{ route('frontend.show', $banner) }}">{{ $banner->user->name }}</a></li>

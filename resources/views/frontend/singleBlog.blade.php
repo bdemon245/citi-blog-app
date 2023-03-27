@@ -39,7 +39,7 @@
                                         </a></li>
                                 @endif
 
-                                <li class="list-inline-item">{{ Carbon\Carbon::parse($post->created_at)->format('d M Y') }}
+                                <li class="list-inline-item">{{ Carbon\Carbon::parse($post->created_at)->diffForHumans() }}
                                 </li>
                                 <li class="list-inline-item btn btn-default btn-sm">Views :
                                     <span class="view-count">{{ $post->view_count }}</span>
@@ -123,59 +123,54 @@
 
                     <!-- section header -->
                     <div class="section-header">
-                        <h3 class="section-title">Comments (3)</h3>
-                        <img src="images/wave.svg" class="wave" alt="wave" />
+                        <h3 class="section-title">Comments ({{ count($post->comments) }})</h3>
+                        <img src="{{ asset('frontend/images/wave.svg') }}" class="wave" alt="wave" />
                     </div>
                     <!-- post comments -->
                     <div class="comments bordered padding-30 rounded">
 
                         <ul class="comments">
-                            <!-- comment item -->
-                            <li class="comment rounded">
-                                <div class="thumb">
-                                    <img src="images/other/comment-1.png" alt="John Doe" />
-                                </div>
-                                <div class="details">
-                                    <h4 class="name"><a href="blog-single.html#">John Doe</a></h4>
-                                    <span class="date">Jan 08, 2021 14:41 pm</span>
-                                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam vitae odio ut
-                                        tortor fringilla cursus sed quis odio.</p>
-                                    <a href="blog-single.html#" class="btn btn-default btn-sm">Reply</a>
-                                </div>
-                            </li>
-                            <!-- comment item -->
-                            <li class="comment child rounded">
-                                <div class="thumb">
-                                    <img src="images/other/comment-2.png" alt="John Doe" />
-                                </div>
-                                <div class="details">
-                                    <h4 class="name"><a href="blog-single.html#">Helen Doe</a></h4>
-                                    <span class="date">Jan 08, 2021 14:41 pm</span>
-                                    <p>Maecenas tempus, tellus eget condimentum rhoncus, sem quam semper libero, sit
-                                        amet adipiscing sem neque sed ipsum.</p>
-                                    <a href="blog-single.html#" class="btn btn-default btn-sm">Reply</a>
-                                </div>
-                            </li>
-                            <!-- comment item -->
-                            <li class="comment rounded">
-                                <div class="thumb">
-                                    <img src="images/other/comment-3.png" alt="John Doe" />
-                                </div>
-                                <div class="details">
-                                    <h4 class="name"><a href="blog-single.html#">Anna Doe</a></h4>
-                                    <span class="date">Jan 08, 2021 14:41 pm</span>
-                                    <p>Cras ultricies mi eu turpis hendrerit fringilla. Vestibulum ante ipsum primis
-                                        in faucibus orci luctus et ultrices posuere cubilia.</p>
-                                    <a href="{{ route('frontend.show', $post) }}"
-                                        class="btn btn-default btn-sm">Reply</a>
-                                </div>
+                            @foreach ($post->comments as $comment)
+                                <!-- comment item -->
+                                <li class="comment rounded">
+                                    <div class="avatar thumb">
+                                        <img src="{{ setImage($comment->user->avatar) }}" alt="{{ $comment->user->name }}"
+                                            loading="lazy" />
+                                    </div>
+                                    <div class="details">
+                                        <h4 class="name"><a href="blog-single.html#">{{ $comment->user->name }}</a></h4>
+                                        <span
+                                            class="date">{{ Carbon\Carbon::parse($comment->created_at)->diffForHumans() }}</span>
+                                        <p class="text-dark"><strong>{{ $comment->content }}</strong></p>
+                                        <form action="" method="post" class="form-group">
+                                            @csrf
+                                            <div class="d-flex gap-2 align-items-center me-5">
+                                                <input type="hidden" name="comment_id" value="{{ $comment->id }}">
+                                                <input type="text" class="form-control" id="reply" name="reply"
+                                                    placeholder="Reply this comment" required="required">
+                                                <button type="submit" class="btn btn-dark btn-sm">Reply</button>
+                                            </div>
+                                        </form>
+                                    </div>
+                                </li>
+                            @endforeach
+                            <li>
+                                <form action="" method="post" class="form-group">
+                                    @csrf
+                                    <div class="d-flex gap-2 align-items-center">
+                                        <input type="hidden" name="post_id" value="{{ $post->id }}">
+                                        <input type="text" class="form-control" id="comment" name="comment"
+                                            placeholder="Leave a comment" required="required">
+                                        <button type="submit" class="btn btn-default btn-sm">Comment</button>
+                                    </div>
+                                </form>
                             </li>
                         </ul>
                     </div>
 
-                    <div class="spacer" data-height="50"></div>
 
-                    <!-- section header -->
+
+                    {{-- <!-- section header -->
                     <div class="section-header">
                         <h3 class="section-title">Leave Comment</h3>
                         <img src="images/wave.svg" class="wave" alt="wave" />
@@ -227,7 +222,7 @@
                                 class="btn btn-default">Submit</button><!-- Submit Button -->
 
                         </form>
-                    </div>
+                    </div> --}}
                 </div>
 
                 @include('layouts.fronendSidebar')
