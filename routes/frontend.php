@@ -1,6 +1,8 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\ReplyController;
+use App\Http\Controllers\CommentController;
 use App\Http\Controllers\frontend\HomeController;
 
 
@@ -31,3 +33,27 @@ Route::get('/post-view-count/{id}', [HomeController::class, 'incrementViewCount'
 
 
 Route::get('/search', [HomeController::class, 'searchLive'])->name('frontend.search.live');
+
+//routes for comment and replies
+
+Route::group(['middleware' => 'auth'],function () {
+    Route::resource('comment', CommentController::class)->names([
+        'index' => 'comment.index',
+        'create' => 'comment.create',
+        'store' => 'comment.store',
+        'show' => 'comment.show',
+        'edit' => 'comment.edit',
+        'update' => 'comment.update',
+        'destroy' => 'comment.destroy',
+    ]);
+
+    Route::resource('reply', ReplyController::class)->names([
+        'index' => 'reply.index',
+        'create' => 'reply.create',
+        'store' => 'reply.store',
+        'show' => 'reply.show',
+        'edit' => 'reply.edit',
+        'update' => 'reply.update',
+        'destroy' => 'reply.destroy',
+    ]);
+});

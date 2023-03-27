@@ -11,7 +11,11 @@ class StoreCommentRequest extends FormRequest
      */
     public function authorize(): bool
     {
-        return false;
+        $value = false;
+        if (auth()->user()) {
+            $value = true;
+        }
+        return $value;
     }
 
     /**
@@ -22,7 +26,7 @@ class StoreCommentRequest extends FormRequest
     public function rules(): array
     {
         return [
-            //
+            'comment' => "required|string"
         ];
     }
 }

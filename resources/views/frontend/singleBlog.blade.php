@@ -129,7 +129,7 @@
                     <!-- post comments -->
                     <div class="comments bordered padding-30 rounded">
 
-                        <ul class="comments">
+                        <ul class="comments" id="commentList">
                             @foreach ($post->comments as $comment)
                                 <!-- comment item -->
                                 <li class="comment rounded">
@@ -138,24 +138,51 @@
                                             loading="lazy" />
                                     </div>
                                     <div class="details">
-                                        <h4 class="name"><a href="blog-single.html#">{{ $comment->user->name }}</a></h4>
+                                        <h4 class="name"><a href="blog-single.html#">{{ $comment->user->name }}</a>
+                                        </h4>
                                         <span
                                             class="date">{{ Carbon\Carbon::parse($comment->created_at)->diffForHumans() }}</span>
-                                        <p class="text-dark"><strong>{{ $comment->content }}</strong></p>
-                                        <form action="" method="post" class="form-group">
-                                            @csrf
-                                            <div class="d-flex gap-2 align-items-center me-5">
-                                                <input type="hidden" name="comment_id" value="{{ $comment->id }}">
-                                                <input type="text" class="form-control" id="reply" name="reply"
-                                                    placeholder="Reply this comment" required="required">
-                                                <button type="submit" class="btn btn-dark btn-sm">Reply</button>
-                                            </div>
-                                        </form>
+                                        <p class="text-dark">{{ $comment->content }}</p>
                                     </div>
+                                    <form action="{{ route('reply.store') }}" method="post" class="form-group">
+                                        @csrf
+                                        <div class="d-flex gap-2 align-items-center mx-5">
+                                            <input type="hidden" name="comment_id" value="{{ $comment->id }}">
+                                            <input type="text" class="form-control" id="reply" name="reply"
+                                                placeholder="Reply this comment" required="required">
+                                            <button type="submit" class="btn btn-dark btn-sm">Reply</button>
+                                        </div>
+                                    </form>
+                                    <ul class="ms-3">
+                                        <h6>
+                                            <span class="mb-3 text-default">Replies</sp>
+                                        </h6>
+                                        @forelse ($comment->replies as $reply)
+                                            <li class="comment rounded">
+                                                <div class="avatar thumb">
+                                                    <img src="{{ setImage($reply->user->avatar) }}"
+                                                        alt="{{ $reply->user->name }}" loading="lazy" />
+                                                </div>
+                                                <div class="details">
+                                                    <h4 class="name"><a
+                                                            href="blog-single.html#">{{ $reply->user->name }}</a>
+                                                    </h4>
+                                                    <span
+                                                        class="date">{{ Carbon\Carbon::parse($reply->created_at)->diffForHumans() }}</span>
+                                                    <p class="text-dark">{{ $reply->content }}</p>
+                                                </div>
+                                            </li>
+                                        @empty
+                                            <li class="text-center">
+                                                <span>No replies yet</sp>
+                                            </li>
+                                        @endforelse
+                                    </ul>
+
                                 </li>
                             @endforeach
                             <li>
-                                <form action="" method="post" class="form-group">
+                                <form action="{{ route('comment.store') }}" method="post" class="form-group">
                                     @csrf
                                     <div class="d-flex gap-2 align-items-center">
                                         <input type="hidden" name="post_id" value="{{ $post->id }}">

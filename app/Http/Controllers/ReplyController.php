@@ -29,7 +29,13 @@ class ReplyController extends Controller
      */
     public function store(StoreReplyRequest $request)
     {
-        //
+        $reply = Reply::create([
+            'user_id' => auth()->id(),
+            'comment_id' => $request->comment_id,
+            'content' => $request->reply,
+        ]);
+
+        return back(201)->with('success', 'replied');
     }
 
     /**

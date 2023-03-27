@@ -9,6 +9,17 @@ class Comment extends Model
 {
     use HasFactory;
 
+    /**
+     * The attributes that are mass assignable.
+     *
+     * @var array<int, string>
+     */
+    protected $fillable = [
+        'user_id',
+        'post_id',
+        'content',
+    ];
+
     public function replies()
     {
         return $this->hasMany(Reply::class);
