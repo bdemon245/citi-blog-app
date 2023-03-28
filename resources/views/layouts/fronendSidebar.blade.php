@@ -4,19 +4,19 @@
     <div class="sidebar">
         <!-- widget about -->
         <div class="widget rounded">
-            <div class="widget-about data-bg-image text-center" data-bg-image="{{ asset('frontend/images/map-bg.png') }}">
+            <div class="widget-about data-bg-image text-center" data-bg-image="{{ asset('frontend/images/wave.svg') }}">
                 <img src="{{ asset('frontend/images/logo.svg') }}" alt="logo" class="mb-4" />
                 <p class="mb-4">Hello, We’re content writer who is fascinated by content fashion, celebrity
                     and lifestyle. We helps clients bring the right content to the right people.</p>
                 <ul class="social-icons list-unstyled list-inline mb-0">
-                    <li class="list-inline-item"><a href="category.html#"><i class="fab fa-facebook-f"></i></a></li>
-                    <li class="list-inline-item"><a href="category.html#"><i class="fab fa-twitter"></i></a>
+                    <li class="list-inline-item"><a href="{{route('frontend.home')}}"><i class="fab fa-facebook-f"></i></a></li>
+                    <li class="list-inline-item"><a href="{{route('frontend.home')}}"><i class="fab fa-twitter"></i></a>
                     </li>
-                    <li class="list-inline-item"><a href="category.html#"><i class="fab fa-instagram"></i></a></li>
-                    <li class="list-inline-item"><a href="category.html#"><i class="fab fa-pinterest"></i></a></li>
-                    <li class="list-inline-item"><a href="category.html#"><i class="fab fa-medium"></i></a>
+                    <li class="list-inline-item"><a href="{{route('frontend.home')}}"><i class="fab fa-instagram"></i></a></li>
+                    <li class="list-inline-item"><a href="{{route('frontend.home')}}"><i class="fab fa-pinterest"></i></a></li>
+                    <li class="list-inline-item"><a href="{{route('frontend.home')}}"><i class="fab fa-medium"></i></a>
                     </li>
-                    <li class="list-inline-item"><a href="category.html#"><i class="fab fa-youtube"></i></a>
+                    <li class="list-inline-item"><a href="{{route('frontend.home')}}"><i class="fab fa-youtube"></i></a>
                     </li>
                 </ul>
             </div>
@@ -89,7 +89,7 @@
                     <button class="btn btn-default btn-full" type="submit">Sign Up</button>
                 </form>
                 <span class="newsletter-privacy text-center mt-3">By signing up, you agree to our <a
-                        href="category.html#">Privacy Policy</a></span>
+                        href="{{route('frontend.home')}}">Privacy Policy</a></span>
             </div>
         </div>
 
@@ -136,7 +136,7 @@
         <!-- widget advertisement -->
         <div class="widget no-container rounded text-md-center">
             <span class="ads-title">- Sponsored Ad -</span>
-            <a href="/" class="widget-ads">
+            <a href="{{route('frontend.home')}}" class="widget-ads">
                 <img src="{{ asset('frontend/images/ads/ad-360.png') }}" alt="Advertisement" />
             </a>
         </div>

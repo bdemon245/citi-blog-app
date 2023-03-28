@@ -194,7 +194,7 @@
                     <div class="row d-flex align-items-center gy-4">
                         <!-- copyright text -->
                         <div class="col-md-4">
-                            <span class="copyright">© 2021 Katen. Template by ThemeGer.</span>
+                            <span class="copyright">© {{Carbon\Carbon::now()->format('Y')}} Katen. Template by ThemeGer.</span>
                         </div>
 
                         <!-- social icons -->
