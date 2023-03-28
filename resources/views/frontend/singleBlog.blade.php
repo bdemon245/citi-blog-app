@@ -1,5 +1,6 @@
 @extends('layouts.frontendapp')
 
+
 @section('content')
     <section class="main-content mt-3">
         <div class="container-xl">
@@ -48,7 +49,7 @@
                         </div>
                         <!-- featured image -->
                         <div class="featured-image">
-                            <img src="{{ setImage($post->featured_img) }}" alt="post-title" />
+                            <img src="{{ setImage($post->featured_img) }}" alt="{{ $post->slug }}" />
                         </div>
                         <!-- post content -->
                         <div class="post-content clearfix">
@@ -122,12 +123,18 @@
                     <div class="spacer" data-height="50"></div>
 
                     <!-- section header -->
-                    <div class="section-header">
-                        <h3 class="section-title">Comments ({{ count($post->comments) }})</h3>
-                        <img src="{{ asset('frontend/images/wave.svg') }}" class="wave" alt="wave" />
+                    <div class="section-header d-flex gap-3 align-items-center">
+                        <div>
+                            <h3 class="section-title">Comments
+                                ({{ count($post->comments) + countReplies($post->comments) }})</h3>
+                        </div>
+                        <div>
+                            <i id="comment-toggler" style="font-weight:bolder; color:var(--bs-pink);"
+                                class="icon-arrow-down"></i>
+                        </div>
                     </div>
                     <!-- post comments -->
-                    <div class="comments bordered padding-30 rounded">
+                    <div class="comments bordered padding-30 rounded" id="comment-container">
 
                         <ul class="comments" id="commentList">
                             @foreach ($post->comments as $comment)
@@ -138,13 +145,61 @@
                                             loading="lazy" />
                                     </div>
                                     <div class="details">
-                                        <h4 class="name"><a href="blog-single.html#">{{ $comment->user->name }}</a>
-                                        </h4>
-                                        <span
-                                            class="date">{{ Carbon\Carbon::parse($comment->created_at)->diffForHumans() }}</span>
-                                        <p class="text-dark">{{ $comment->content }}</p>
+                                        <div class="d-flex gap-5 align-items-center">
+                                            <strong class="name">{{ $comment->user->name }}
+                                            </strong>
+                                            <div class="d-flex gap-4">
+                                                @auth
+                                                    @if ($comment->user_id === auth()->id())
+                                                        <button data-url="{{ route('comment.show', $comment) }}"
+                                                            id="{{ $comment->id }}"
+                                                            class="p-0 m-0 comment-update-btn-{{ $comment->id }}"
+                                                            style="border:none; background:none;color: var(--bs-dark); font-weight: bolder;">
+                                                            <i class="icon-note"></i>Edit
+                                                        </button>
+                                                        <form action="{{ route('comment.destroy', $comment) }}"
+                                                            method="post">
+                                                            @csrf
+                                                            @method('DELETE')
+                                                            <button type="submit" class="p-0 m-0"
+                                                                style="border:none; background:none;color: var(--bs-danger); font-weight: bolder;">
+                                                                <i class="icon-trash"></i>Delete
+                                                            </button>
+                                                        </form>
+                                                    @endif
+                                                @else
+                                                    <span class="text-warning">Please login to perform actions</span>
+                                                @endauth
+                                            </div>
+                                        </div>
+                                        <span class="date">
+                                            {{ Carbon\Carbon::parse($comment->created_at)->diffForHumans() }}
+                                        </span>
+                                        <div class="mb-3">
+                                            <strong
+                                                class="text-dark comment-content-{{ $comment->id }}">{{ $comment->content }}</strong>
+                                            <img class="comment-ajax-loader-{{ $comment->id }}"
+                                                src="{{ asset('frontend/images/ajax-loader.gif') }}" />
+                                            <form action="{{ route('reply.update', $comment) }}" method="post"
+                                                class="form-group comment-update-form-{{ $comment->id }}">
+                                                @csrf
+                                                @method('PATCH')
+                                                <div class="d-flex gap-2 align-items-center">
+                                                    <input type="hidden" name="comment_id" value="{{ $comment->id }}">
+                                                    <input type="text"
+                                                        class="form-control comment-update-input-{{ $comment->id }}"
+                                                        id="reply" name="reply" placeholder="update this comment"
+                                                        required="required">
+                                                    <button type="submit" class="btn btn-default btn-sm">Update</button>
+                                                </div>
+                                            </form>
+                                        </div>
                                     </div>
-                                    <form action="{{ route('reply.store') }}" method="post" class="form-group">
+
+
+
+                                    <form id="{{ $comment->id }}" action="{{ route('reply.store') }}" method="post"
+                                        class="form-group reply-store-form-{{ $comment->id }}">
                                         @csrf
                                         <div class="d-flex gap-2 align-items-center mx-5">
                                             <input type="hidden" name="comment_id" value="{{ $comment->id }}">
@@ -153,10 +208,16 @@
                                             <button type="submit" class="btn btn-dark btn-sm">Reply</button>
                                         </div>
                                     </form>
-                                    <ul class="ms-3">
-                                        <h6>
-                                            <span class="mb-3 text-default">Replies</sp>
-                                        </h6>
+
+
+                                    <button style="background: none; border:none; margin:0; padding:0;"
+                                        class="reply-toggler-{{ $comment->id }}" id="{{ $comment->id }}">
+                                        <p class="text-dark">Replies<span class="icon-arrow-down ms-2"
+                                                style="font-weight:bold; color:var(--bs-pink);"
+                                                id="reply-arrow-{{ $comment->id }}"></span></p>
+
+                                    </button>
+                                    <ul class="ms-3 reply-container-{{ $comment->id }}">
                                         @forelse ($comment->replies as $reply)
                                             <li class="comment rounded">
                                                 <div class="avatar thumb">
@@ -195,61 +256,6 @@
                         </ul>
                     </div>
 
-
-
-                    {{-- <!-- section header -->
-                    <div class="section-header">
-                        <h3 class="section-title">Leave Comment</h3>
-                        <img src="images/wave.svg" class="wave" alt="wave" />
-                    </div>
-                    <!-- comment form -->
-                    <div class="comment-form rounded bordered padding-30">
-
-                        <form id="comment-form" class="comment-form" method="post">
-
-                            <div class="messages"></div>
-
-                            <div class="row">
-
-                                <div class="column col-md-12">
-                                    <!-- Comment textarea -->
-                                    <div class="form-group">
-                                        <textarea name="InputComment" id="InputComment" class="form-control" rows="4"
-                                            placeholder="Your comment here..." required="required"></textarea>
-                                    </div>
-                                </div>
-
-                                <div class="column col-md-6">
-                                    <!-- Email input -->
-                                    <div class="form-group">
-                                        <input type="email" class="form-control" id="InputEmail" name="InputEmail"
-                                            placeholder="Email address" required="required">
-                                    </div>
-                                </div>
-
-                                <div class="column col-md-6">
-                                    <!-- Name input -->
-                                    <div class="form-group">
-                                        <input type="text" class="form-control" name="InputWeb" id="InputWeb"
-                                            placeholder="Website" required="required">
-                                    </div>
-                                </div>
-
-                                <div class="column col-md-12">
-                                    <!-- Email input -->
-                                    <div class="form-group">
-                                        <input type="text" class="form-control" id="InputName" name="InputName"
-                                            placeholder="Your name" required="required">
-                                    </div>
-                                </div>
-
-                            </div>
-
-                            <button type="submit" name="submit" id="submit" value="Submit"
-                                class="btn btn-default">Submit</button><!-- Submit Button -->
-
-                        </form>
-                    </div> --}}
                 </div>
 
                 @include('layouts.fronendSidebar')
@@ -278,7 +284,55 @@
                             $('.view-count').text(data.view_count);
                         }
                     })
-                }, readingTime)
+                }, readingTime);
+
+                //hide all replies initially
+                $('[class*="reply-container-"]').hide();
+
+
+
+                //expand upon each reply toggler click
+                $('[class*="reply-toggler-"]').each(function(i) {
+                    $(this).click(function() {
+                        $(`#reply-arrow-${this.id}`).toggleClass('icon-arrow-up');
+                        $(`.reply-container-${this.id}`).slideToggle();
+                    })
+                });
+
+                //hide update comment form initially
+                $('[class*="comment-update-form-"]').hide();
+                $('[class*="comment-ajax-loader-"]').hide();
+                //expand upon each comment edit btn click
+                $('[class*="comment-update-btn-"]').each(function(i) {
+                    // let comment = null;
+                    $(this).click(function() {
+                        let id = this.id
+                        $(`.comment-content-${id}`).hide();
+                        $(`.comment-ajax-loader-${id}`).show();
+                        $.ajax({
+                            type: "get",
+                            url: this.dataset.url,
+                            success: function(response) {
+                                $(`.comment-ajax-loader-${id}`).hide();
+                                $(`.comment-update-form-${id}`).slideToggle();
+                                $(`.comment-update-input-${id}`).trigger('focus').val(
+                                    response.content);
+                            }
+                        });
+
+                    })
+                });
+
+
+                //hide all comments
+                $('#comment-container').hide();
+
+                $('#comment-toggler').click(function(e) {
+                    e.preventDefault();
+                    $(this).toggleClass('icon-arrow-up');
+                    $('#comment-container').slideToggle();
+                });
+
             });
         </script>
     @endpush

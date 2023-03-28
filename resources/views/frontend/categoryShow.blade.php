@@ -72,7 +72,7 @@
                                                         src="{{ setImage($post->user->avatar) }}" class="author avatar"
                                                         alt="author" />{{ $post->user->name }}</a></li>
                                             <li class="list-inline-item">
-                                                {{ Carbon\Carbon::parse($post->created_at)->format('d M Y') }}
+                                                {{ Carbon\Carbon::parse($post->created_at)->diffForHumans() }}
                                             </li>
                                         </ul>
                                         <h5 class="post-title mb-3 mt-3">

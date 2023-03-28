@@ -15,9 +15,18 @@ function recordsCount(string $tableName, array $queries = [])
 /**
  * Queries random records an returns them
  */
-function recordsRandom(string $tableName, array $relatedItems = [], array $queries = [], int $qty = 5)
+function randomPosts(array $relatedItems = [], array $queries = [], int $qty = 5)
 {
-    return Records::random($tableName, $relatedItems, $queries, $qty);
+    return Records::randomPosts($relatedItems, $queries, $qty);
+}
+
+/**
+ * Queries random records an returns them
+ */
+function popular(string $tableName, string $order = 'view_count', int $qty = 5)
+{
+
+    return Records::popular($tableName, $order, $qty);
 }
 
 /**
@@ -31,4 +40,14 @@ function setImage(string $imgUrl)
         $imgUrl = asset('storage/' . $imgUrl);
     }
     return $imgUrl;
+}
+
+
+function countReplies($comments)
+{
+    $replies = 0;
+    foreach ($comments as $comment) {
+        $replies += count($comment->replies);
+    }
+    return $replies;
 }

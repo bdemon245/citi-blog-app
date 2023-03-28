@@ -2,6 +2,7 @@
 
 namespace App\Helpers;
 
+use App\Models\Post;
 use Illuminate\Support\Facades\DB;
 
 class Records
@@ -19,9 +20,17 @@ class Records
     /**
      * Queries random records an returns them
      */
-    public static function random(string $tableName, array $relatedItems = [], array $queries = [], int $qty = 5)
+    public static function randomPosts( array $relatedItems = [], array $queries = [], int $qty = 5)
     {
-        $records = DB::table($tableName)->with($relatedItems)->where($queries)->inRandomOrder()->paginate($qty);
+        $records = Post::with($relatedItems)->where($queries)->inRandomOrder()->paginate($qty);
+        return $records;
+    }
+    /**
+     * Queries random records an returns them
+     */
+    public static function popular(string $tableName, string $order = 'view_count', int $qty = 5)
+    {
+        $records = DB::table($tableName)->orderBy($order, 'desc')->paginate($qty);
         return $records;
     }
 }

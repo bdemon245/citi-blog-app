@@ -43,7 +43,7 @@ class CommentController extends Controller
      */
     public function show(Comment $comment)
     {
-        //
+        return response($comment, 200);
     }
 
     /**
@@ -67,6 +67,8 @@ class CommentController extends Controller
      */
     public function destroy(Comment $comment)
     {
-        //
+        $comment->delete();
+        
+        return back()->with('success', 'comment deleted');
     }
 }
