@@ -106,15 +106,15 @@
                             <ul class="social-icons list-unstyled list-inline mb-0">
                                 <li class="list-inline-item"><a href="{{ route('frontend.show', $post) }}"><i
                                             class="fab fa-facebook-f"></i></a></li>
-                                <li class="list-inline-item"><a href="blog-single.html#"><i class="fab fa-twitter"></i></a>
+                                <li class="list-inline-item"><a href="{{ route('frontend.show', $post) }}"><i class="fab fa-twitter"></i></a>
                                 </li>
-                                <li class="list-inline-item"><a href="blog-single.html#"><i
+                                <li class="list-inline-item"><a href="{{ route('frontend.show', $post) }}"><i
                                             class="fab fa-instagram"></i></a></li>
-                                <li class="list-inline-item"><a href="blog-single.html#"><i
+                                <li class="list-inline-item"><a href="{{ route('frontend.show', $post) }}"><i
                                             class="fab fa-pinterest"></i></a></li>
-                                <li class="list-inline-item"><a href="blog-single.html#"><i class="fab fa-medium"></i></a>
+                                <li class="list-inline-item"><a href="{{ route('frontend.show', $post) }}"><i class="fab fa-medium"></i></a>
                                 </li>
-                                <li class="list-inline-item"><a href="blog-single.html#"><i class="fab fa-youtube"></i></a>
+                                <li class="list-inline-item"><a href="{{ route('frontend.show', $post) }}"><i class="fab fa-youtube"></i></a>
                                 </li>
                             </ul>
                         </div>
@@ -226,7 +226,7 @@
                                                 </div>
                                                 <div class="details">
                                                     <h4 class="name"><a
-                                                            href="blog-single.html#">{{ $reply->user->name }}</a>
+                                                            href="{{ route('frontend.show', $post) }}">{{ $reply->user->name }}</a>
                                                     </h4>
                                                     <span
                                                         class="date">{{ Carbon\Carbon::parse($reply->created_at)->diffForHumans() }}</span>
