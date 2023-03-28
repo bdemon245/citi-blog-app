@@ -106,15 +106,18 @@
                             <ul class="social-icons list-unstyled list-inline mb-0">
                                 <li class="list-inline-item"><a href="{{ route('frontend.show', $post) }}"><i
                                             class="fab fa-facebook-f"></i></a></li>
-                                <li class="list-inline-item"><a href="{{ route('frontend.show', $post) }}"><i class="fab fa-twitter"></i></a>
+                                <li class="list-inline-item"><a href="{{ route('frontend.show', $post) }}"><i
+                                            class="fab fa-twitter"></i></a>
                                 </li>
                                 <li class="list-inline-item"><a href="{{ route('frontend.show', $post) }}"><i
                                             class="fab fa-instagram"></i></a></li>
                                 <li class="list-inline-item"><a href="{{ route('frontend.show', $post) }}"><i
                                             class="fab fa-pinterest"></i></a></li>
-                                <li class="list-inline-item"><a href="{{ route('frontend.show', $post) }}"><i class="fab fa-medium"></i></a>
+                                <li class="list-inline-item"><a href="{{ route('frontend.show', $post) }}"><i
+                                            class="fab fa-medium"></i></a>
                                 </li>
-                                <li class="list-inline-item"><a href="{{ route('frontend.show', $post) }}"><i class="fab fa-youtube"></i></a>
+                                <li class="list-inline-item"><a href="{{ route('frontend.show', $post) }}"><i
+                                            class="fab fa-youtube"></i></a>
                                 </li>
                             </ul>
                         </div>
@@ -137,12 +140,23 @@
                     <div class="comments bordered padding-30 rounded" id="comment-container">
 
                         <ul class="comments" id="commentList">
+                            <li>
+                                <form action="{{ route('comment.store') }}" method="post" class="form-group">
+                                    @csrf
+                                    <div class="d-flex gap-2 align-items-center">
+                                        <input type="hidden" name="post_id" value="{{ $post->id }}">
+                                        <input type="text" class="form-control" id="comment" name="comment"
+                                            placeholder="Leave a comment" required="required">
+                                        <button type="submit" class="btn btn-default btn-sm">Comment</button>
+                                    </div>
+                                </form>
+                            </li>
                             @foreach ($post->comments as $comment)
                                 <!-- comment item -->
                                 <li class="comment rounded">
                                     <div class="avatar thumb">
-                                        <img src="{{ setImage($comment->user->avatar) }}" alt="{{ $comment->user->name }}"
-                                            loading="lazy" />
+                                        <img src="{{ setImage($comment->user->avatar) }}"
+                                            alt="{{ $comment->user->name }}" loading="lazy" />
                                     </div>
                                     <div class="details">
                                         <div class="d-flex gap-5 align-items-center">
@@ -242,17 +256,7 @@
 
                                 </li>
                             @endforeach
-                            <li>
-                                <form action="{{ route('comment.store') }}" method="post" class="form-group">
-                                    @csrf
-                                    <div class="d-flex gap-2 align-items-center">
-                                        <input type="hidden" name="post_id" value="{{ $post->id }}">
-                                        <input type="text" class="form-control" id="comment" name="comment"
-                                            placeholder="Leave a comment" required="required">
-                                        <button type="submit" class="btn btn-default btn-sm">Comment</button>
-                                    </div>
-                                </form>
-                            </li>
+
                         </ul>
                     </div>
 
