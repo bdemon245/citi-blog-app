@@ -4,7 +4,7 @@
     <div class="sidebar">
         <!-- widget about -->
         <div class="widget rounded">
-            <div class="widget-about data-bg-image text-center" data-bg-image="{{ asset('frontend/images/wave.svg') }}">
+            <div class="widget-about data-bg-image text-center">
                 <img src="{{ asset('frontend/images/logo.svg') }}" alt="logo" class="mb-4" />
                 <p class="mb-4">Hello, We’re content writer who is fascinated by content fashion, celebrity
                     and lifestyle. We helps clients bring the right content to the right people.</p>
