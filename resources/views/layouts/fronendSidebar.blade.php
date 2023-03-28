@@ -148,11 +148,11 @@
                 <img src="{{ asset('frontend/images/wave.svg') }}" class="wave" alt="wave" />
             </div>
             <div class="widget-content">
-                <a href="category.html#" class="tag">#Trending</a>
-                <a href="category.html#" class="tag">#Video</a>
-                <a href="category.html#" class="tag">#Featured</a>
-                <a href="category.html#" class="tag">#Gallery</a>
-                <a href="category.html#" class="tag">#Celebrities</a>
+                @forelse ($tags as $tag)
+                    <a href="{{ route('frontend.tag', $tag) }}" class="tag">{{ "#$tag->slug" }}</a>
+                @empty
+                    <p class="text-center">No tags to be found</p>
+                @endforelse
             </div>
         </div>
 

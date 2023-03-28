@@ -83,9 +83,9 @@
                         @enderror
                     </div>
 
-                    {{-- <div class="row">
-                <input type="text" name="tags" class="form-control" placeholder="Hash Tags">
-            </div> --}}
+                    <div class="row">
+                        <input type="text" name="tags" class="form-control" placeholder="Hash Tags">
+                    </div>
 
                     <button class="btn-primary btn" style="width:100%;margin:20px 0;">Submit</button>
 

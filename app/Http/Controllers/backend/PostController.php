@@ -75,6 +75,10 @@ class PostController extends Controller
             'content' => $request->content,
             'featured_img' => $path,
         ]);
+        if ($request->has('tags')) {
+            $tags = explode(',', $request->tags);
+            $post->attachTags($tags);
+        }
 
         return back(201)->with('success', 'new post created');
     }

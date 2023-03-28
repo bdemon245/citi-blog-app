@@ -49,7 +49,7 @@
                 </td>
                 <td>
                     <div class="d-flex gap-2">
-                        <a href="{{ route('post.show', $post) }}" class="btn btn-dark btn-sm">View</a>
+                        <a href="{{ route('frontend.show', $post) }}" class="btn btn-dark btn-sm">View</a>
                         @can('update post')
                             <a href="{{ route('post.edit', $post) }}" class="btn btn-primary btn-sm">Edit</a>
                         @endcan
