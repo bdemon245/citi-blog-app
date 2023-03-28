@@ -11,7 +11,7 @@
                             <a href="{{ route('frontend.category', $banner->category_id) }}"
                                 class="category-badge lg">{{ $banner->category->title }}</a>
                             <h4 class="post-title"><a
-                                    href="{{ route('frontend.category', $banner->category_id) }}">{{ $banner->title }}</a>
+                                    href="{{ route('frontend.show', $banner) }}">{{ $banner->title }}</a>
                             </h4>
                             <ul class="meta list-inline mb-0">
                                 <li class="list-inline-item"><a
@@ -50,7 +50,7 @@
                                 <span class="post-format">
                                     <i class="icon-picture"></i>
                                 </span>
-                                <a href="blog-single.html">
+                                <a href="{{ route('frontend.show', $post) }}">
                                     <div class="inner">
                                         <img src="{{ setImage($post->featured_img) }}" alt="post-title" />
                                     </div>
@@ -58,7 +58,7 @@
                             </div>
                             <div class="details">
                                 <ul class="meta list-inline mb-0">
-                                    <li class="list-inline-item"><a href="classic.html#"><img
+                                    <li class="list-inline-item"><a href="{{ route('frontend.show', $post) }}"><img
                                                 src="{{ setImage($post->user->avatar) }}" class="author avatar"
                                                 alt="author" />{{ $post->user->name }}</a></li>
                                     <li class="list-inline-item">
@@ -67,25 +67,25 @@
                                         ({{ count($post->comments) + countReplies($post->comments) }})
                                     </li>
                                 </ul>
-                                <h5 class="post-title mb-3 mt-3"><a href="blog-single.html">{{ $post->title }}</a></h5>
+                                <h5 class="post-title mb-3 mt-3"><a href="{{ route('frontend.show', $post) }}">{{ $post->title }}</a></h5>
                                 <p class="excerpt mb-0">{!! Str::limit($post->content, 200, '...') !!}</p>
                             </div>
                             <div class="post-bottom clearfix d-flex align-items-center">
                                 <div class="social-share me-auto">
                                     <button class="toggle-button icon-share"></button>
                                     <ul class="icons list-unstyled list-inline mb-0">
-                                        <li class="list-inline-item"><a href="classic.html#"><i
+                                        <li class="list-inline-item"><a href="{{route("frontend.home")}}"><i
                                                     class="fab fa-facebook-f"></i></a></li>
-                                        <li class="list-inline-item"><a href="classic.html#"><i
+                                        <li class="list-inline-item"><a href="{{route("frontend.home")}}"><i
                                                     class="fab fa-twitter"></i></a>
                                         </li>
-                                        <li class="list-inline-item"><a href="classic.html#"><i
+                                        <li class="list-inline-item"><a href="{{route("frontend.home")}}"><i
                                                     class="fab fa-linkedin-in"></i></a></li>
-                                        <li class="list-inline-item"><a href="classic.html#"><i
+                                        <li class="list-inline-item"><a href="{{route("frontend.home")}}"><i
                                                     class="fab fa-pinterest"></i></a></li>
-                                        <li class="list-inline-item"><a href="classic.html#"><i
+                                        <li class="list-inline-item"><a href="{{route("frontend.home")}}"><i
                                                     class="fab fa-telegram-plane"></i></a></li>
-                                        <li class="list-inline-item"><a href="classic.html#"><i
+                                        <li class="list-inline-item"><a href="{{route("frontend.home")}}"><i
                                                     class="far fa-envelope"></i></a>
                                         </li>
                                     </ul>
@@ -116,36 +116,36 @@
     <div class="instagram">
         <div class="container-xl">
             <!-- button -->
-            <a href="classic.html#" class="btn btn-default btn-instagram">@Katen on Instagram</a>
+            <a href="{{route("frontend.home")}}" class="btn btn-default btn-instagram">@Katen on Instagram</a>
             <!-- images -->
             <div class="instagram-feed d-flex flex-wrap">
                 <div class="insta-item col-sm-2 col-6 col-md-2">
-                    <a href="classic.html#">
+                    <a href="{{route("frontend.home")}}">
                         <img src="images/insta/insta-1.jpg" alt="insta-title" />
                     </a>
                 </div>
                 <div class="insta-item col-sm-2 col-6 col-md-2">
-                    <a href="classic.html#">
+                    <a href="{{route("frontend.home")}}">
                         <img src="images/insta/insta-2.jpg" alt="insta-title" />
                     </a>
                 </div>
                 <div class="insta-item col-sm-2 col-6 col-md-2">
-                    <a href="classic.html#">
+                    <a href="{{route("frontend.home")}}">
                         <img src="images/insta/insta-3.jpg" alt="insta-title" />
                     </a>
                 </div>
                 <div class="insta-item col-sm-2 col-6 col-md-2">
-                    <a href="classic.html#">
+                    <a href="{{route("frontend.home")}}">
                         <img src="images/insta/insta-4.jpg" alt="insta-title" />
                     </a>
                 </div>
                 <div class="insta-item col-sm-2 col-6 col-md-2">
-                    <a href="classic.html#">
+                    <a href="{{route("frontend.home")}}">
                         <img src="images/insta/insta-5.jpg" alt="insta-title" />
                     </a>
                 </div>
                 <div class="insta-item col-sm-2 col-6 col-md-2">
-                    <a href="classic.html#">
+                    <a href="{{route("frontend.home")}}">
                         <img src="images/insta/insta-6.jpg" alt="insta-title" />
                     </a>
                 </div>

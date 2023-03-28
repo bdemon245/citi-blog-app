@@ -101,17 +101,17 @@
                         <div class="col-md-8 d-none d-md-block">
                             <!-- social icons -->
                             <ul class="social-icons list-unstyled list-inline mb-0 float-end">
-                                <li class="list-inline-item"><a href="classic.html#"><i
+                                <li class="list-inline-item"><a href="{{route("frontend.home")}}"><i
                                             class="fab fa-facebook-f"></i></a></li>
-                                <li class="list-inline-item"><a href="classic.html#"><i class="fab fa-twitter"></i></a>
+                                <li class="list-inline-item"><a href="{{route("frontend.home")}}"><i class="fab fa-twitter"></i></a>
                                 </li>
-                                <li class="list-inline-item"><a href="classic.html#"><i
+                                <li class="list-inline-item"><a href="{{route("frontend.home")}}"><i
                                             class="fab fa-instagram"></i></a></li>
-                                <li class="list-inline-item"><a href="classic.html#"><i
+                                <li class="list-inline-item"><a href="{{route("frontend.home")}}"><i
                                             class="fab fa-pinterest"></i></a></li>
-                                <li class="list-inline-item"><a href="classic.html#"><i class="fab fa-medium"></i></a>
+                                <li class="list-inline-item"><a href="{{route("frontend.home")}}"><i class="fab fa-medium"></i></a>
                                 </li>
-                                <li class="list-inline-item"><a href="classic.html#"><i class="fab fa-youtube"></i></a>
+                                <li class="list-inline-item"><a href="{{route("frontend.home")}}"><i class="fab fa-youtube"></i></a>
                                 </li>
                             </ul>
                         </div>
@@ -200,19 +200,19 @@
                         <!-- social icons -->
                         <div class="col-md-4 text-center">
                             <ul class="social-icons list-unstyled list-inline mb-0">
-                                <li class="list-inline-item"><a href="classic.html#"><i
+                                <li class="list-inline-item"><a href="{{route("frontend.home")}}"><i
                                             class="fab fa-facebook-f"></i></a></li>
-                                <li class="list-inline-item"><a href="classic.html#"><i
+                                <li class="list-inline-item"><a href="{{route("frontend.home")}}"><i
                                             class="fab fa-twitter"></i></a>
                                 </li>
-                                <li class="list-inline-item"><a href="classic.html#"><i
+                                <li class="list-inline-item"><a href="{{route("frontend.home")}}"><i
                                             class="fab fa-instagram"></i></a></li>
-                                <li class="list-inline-item"><a href="classic.html#"><i
+                                <li class="list-inline-item"><a href="{{route("frontend.home")}}"><i
                                             class="fab fa-pinterest"></i></a></li>
-                                <li class="list-inline-item"><a href="classic.html#"><i
+                                <li class="list-inline-item"><a href="{{route("frontend.home")}}"><i
                                             class="fab fa-medium"></i></a>
                                 </li>
-                                <li class="list-inline-item"><a href="classic.html#"><i
+                                <li class="list-inline-item"><a href="{{route("frontend.home")}}"><i
                                             class="fab fa-youtube"></i></a>
                                 </li>
                             </ul>
@@ -308,12 +308,12 @@
 
         <!-- social icons -->
         <ul class="social-icons list-unstyled list-inline mb-0 mt-auto w-100">
-            <li class="list-inline-item"><a href="classic.html#"><i class="fab fa-facebook-f"></i></a></li>
-            <li class="list-inline-item"><a href="classic.html#"><i class="fab fa-twitter"></i></a></li>
-            <li class="list-inline-item"><a href="classic.html#"><i class="fab fa-instagram"></i></a></li>
-            <li class="list-inline-item"><a href="classic.html#"><i class="fab fa-pinterest"></i></a></li>
-            <li class="list-inline-item"><a href="classic.html#"><i class="fab fa-medium"></i></a></li>
-            <li class="list-inline-item"><a href="classic.html#"><i class="fab fa-youtube"></i></a></li>
+            <li class="list-inline-item"><a href="{{route("frontend.home")}}"><i class="fab fa-facebook-f"></i></a></li>
+            <li class="list-inline-item"><a href="{{route("frontend.home")}}"><i class="fab fa-twitter"></i></a></li>
+            <li class="list-inline-item"><a href="{{route("frontend.home")}}"><i class="fab fa-instagram"></i></a></li>
+            <li class="list-inline-item"><a href="{{route("frontend.home")}}"><i class="fab fa-pinterest"></i></a></li>
+            <li class="list-inline-item"><a href="{{route("frontend.home")}}"><i class="fab fa-medium"></i></a></li>
+            <li class="list-inline-item"><a href="{{route("frontend.home")}}"><i class="fab fa-youtube"></i></a></li>
         </ul>
     </div>
 
